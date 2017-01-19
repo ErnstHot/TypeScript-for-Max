@@ -9,22 +9,22 @@ This has not at all been thoroughly tested and has plenty of TODO's in the defin
 the grunt work of writing the definitions has been done. Expect bugs.
 
 INCLUDED IN THIS ARCHIVE
-	/Definitions
-		cycling74-max7.d.ts 		Definition file for JavaScript in Max
-		cycling74-max7-jsui.d.ts 	Definition file for JSUI, MGraphics, Sketch, etc.
+    /Definitions
+        cycling74-max7.d.ts         Definition file for JavaScript in Max
+        cycling74-max7-jsui.d.ts    Definition file for JSUI, MGraphics, Sketch, etc.
 
-	/Modules
-		ExampleModule.ts 			An example module used by both examples
+    /Modules
+        ExampleModule.ts            An example module used by both examples
 
-	/ExampleJS
-		ExampleJS.maxpat			Example patcher	
-		ExampleJS.ts 				Example [js] code
-		tsconfig.json				TypeScript configuration file 
+    /ExampleJS
+        ExampleJS.maxpat            Example patcher 
+        ExampleJS.ts                Example [js] code
+        tsconfig.json               TypeScript configuration file 
 
-	/ExampleJSUI
-		ExampleJSUI.maxpat			Example patcher
-		ExampleJSUI.ts 				Example [jsui] code
-		tsconfig.json				TypeScript configuration file
+    /ExampleJSUI
+        ExampleJSUI.maxpat          Example patcher
+        ExampleJSUI.ts              Example [jsui] code
+        tsconfig.json               TypeScript configuration file
 
 The TypeScript configuration files (tsconfig.json) are set up to merge each example into one
 JavaScript output file, this is the only way I have been able to get modules to work so far. Make

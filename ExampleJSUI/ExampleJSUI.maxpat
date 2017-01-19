@@ -51,11 +51,10 @@
 			}
 , 			{
 				"box" : 				{
-					"format" : 6,
 					"id" : "obj-18",
-					"maxclass" : "flonum",
-					"maximum" : 32.0,
-					"minimum" : 4.0,
+					"maxclass" : "number",
+					"maximum" : 128,
+					"minimum" : 2,
 					"numinlets" : 1,
 					"numoutlets" : 2,
 					"outlettype" : [ "", "bang" ],
@@ -83,7 +82,7 @@
 					"format" : 6,
 					"id" : "obj-16",
 					"maxclass" : "flonum",
-					"maximum" : 3.0,
+					"maximum" : 20.0,
 					"minimum" : 0.0,
 					"numinlets" : 1,
 					"numoutlets" : 2,
@@ -314,7 +313,7 @@
  ],
 		"dependency_cache" : [ 			{
 				"name" : "ExampleJSUI.js",
-				"bootpath" : "~/Documents/Max 7/Library/ErnstHot/TypeScript/TypeScript for Max/JavaScript",
+				"bootpath" : "~/Documents/Max 7/Library/ErnstHot/TypeScript/TypeScript-for-Max/JavaScript",
 				"type" : "TEXT",
 				"implicit" : 1
 			}

@@ -31,22 +31,24 @@ function paint(){
 			m.fill();
 		}		
 	}
-
-	t += 0.05;
 }
 
 function bang() {
+	t += 0.01;
 	m.redraw();
 }
 
 function setA(v){
 	a = v;
+	m.redraw();
 }
 
 function setB(v){
 	b = v;
+	m.redraw();
 }
 
 function setRes(v){
-	div = v;
+	div = Math.floor(v);
+	m.redraw();
 }

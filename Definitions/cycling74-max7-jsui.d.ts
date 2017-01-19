@@ -60,7 +60,10 @@ declare class MGraphics {
 	restore(): void;
 	push_group(): void;
 	pop_group(): Image;
+	set_source_rgba(rgba: number[]): void;
+	set_source_rgba(rgb: number[], alpha: number): void;
 	set_source_rgba(red: number, green: number, blue: number, alpha: number): void;
+	set_source_rgb(rgb: number[]): void;
 	set_source_rgb(red: number, green: number, blue: number): void;
 	set_source(pattern: any): void;
 	set_source_surface(surface: any): void;

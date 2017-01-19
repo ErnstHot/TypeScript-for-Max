@@ -1,5 +1,6 @@
 var ExampleModule;
 (function (ExampleModule) {
+    // These two functions are painfully slow ;)
     function colorFn(x) {
         return [Math.sin(x) * 0.5 + 0.5,
             Math.sin(x + 0.333 * Math.PI) * 0.5 + 0.5,
@@ -36,12 +37,12 @@ var ExampleModule;
 inlets = 1;
 outlets = 1;
 autowatch = 1;
-// Only works if ExampleModule.ts is declared before ExampleJS.ts in tsconfig.json!
-var em = ExampleModule;
 var m = mgraphics;
 m.init();
 m.relative_coords = 0;
 m.autofill = 0;
+// Only works if ExampleModule.ts is declared before ExampleJS.ts in tsconfig.json!
+var em = ExampleModule;
 var t = 0;
 var a = 10.0;
 var b = 2.0;
@@ -55,7 +56,7 @@ function paint() {
     for (var y = 0; y < height; y += div) {
         for (var x = 0; x < width; x += div) {
             var c = em.pixelFn(x / width, y / height, t, a, b);
-            m.set_source_rgba(c[0], c[1], c[2], c[3]);
+            m.set_source_rgba(c);
             m.rectangle(x, y, x + div, y + div);
             m.fill();
         }

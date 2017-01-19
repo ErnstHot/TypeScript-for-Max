@@ -26,7 +26,7 @@ function paint(){
 	for (var y = 0; y < height; y += div) {
 		for (var x = 0; x < width; x += div) {
 			let c = em.pixelFn(x / width, y / height, t, a, b);
-			m.set_source_rgba(c[0], c[1], c[2], c[3]);
+			m.set_source_rgba(c);
 			m.rectangle(x, y, x + div, y + div);
 			m.fill();
 		}		

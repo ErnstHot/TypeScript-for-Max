@@ -5,7 +5,7 @@ Extract this archive in Max' search path.
 Follow this guide to set up Sublime Text and TypeScript:
 https://cmatskas.com/getting-started-with-typescript-and-sublime-text/
 
-This has by not at all been thoroughly tested and has plenty of TODO's in the definition files, but
+This has not at all been thoroughly tested and has plenty of TODO's in the definition files, but
 the grunt work of writing the definitions has been done. Expect bugs. Feel free to contact me if you
 wish to contribute.
 

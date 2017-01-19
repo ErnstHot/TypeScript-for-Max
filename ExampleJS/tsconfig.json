@@ -1,0 +1,15 @@
+{
+	"compilerOptions": {
+		"module": "system",
+		"target": "es3",
+		"noImplicitAny": false,
+		"sourceMap": false,
+		"lib": [ "es7" ],
+		"outFile": "../JavaScript/ExampleJS.js"
+	},
+	"files": [
+		"../Modules/ExampleModule.ts",
+		"ExampleJS.ts",
+		"../Definitions/cycling74-max7.d.ts"
+	]
+}

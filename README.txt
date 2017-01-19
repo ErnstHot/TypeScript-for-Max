@@ -6,8 +6,7 @@ Follow this guide to set up Sublime Text and TypeScript:
 https://cmatskas.com/getting-started-with-typescript-and-sublime-text/
 
 This has not at all been thoroughly tested and has plenty of TODO's in the definition files, but
-the grunt work of writing the definitions has been done. Expect bugs. Feel free to contact me if you
-wish to contribute.
+the grunt work of writing the definitions has been done. Expect bugs.
 
 INCLUDED IN THIS ARCHIVE
 	/Definitions
@@ -33,5 +32,3 @@ sure compiled JavaScript files are in Max' search path.
 
 For more information on configuration files, look here:
 https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
-
-You can contact me on thorsten.oerts@gmail.com, but don't expect me to have time to help.

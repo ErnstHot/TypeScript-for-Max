@@ -151,37 +151,6 @@ declare class Global {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Image                                                                                                              // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// https://docs.cycling74.com/max7/vignettes/jsimageobject
-
-declare class Image {
-	// TODO: Not like this.
-	constructor();
-	constructor(filename: string);
-	constructor(image: Image);
-	constructor(sketch: Sketch);
-	constructor(width: number, height: number);
-	size: number[];	
-	adjustchannel(channel: "red" | "green" | "blue" | "alpha", scale: number, bias:number): void;
-	alphachroma(red: number, green: number, blue: number, tolerance: number, fade: number, minkey: number, maxkey: number): void;	
-	blendchannel(source_object: any, alpha: number, source_channel: "red" | "green" | "blue" | "alpha", destination_channel: "red" | "green" | "blue" | "alpha"): void;	 
-	blendpixels(source_object: any, alpha: number, dest_x: number, dest_y: number, rc_x: number, src_y: number, width: number, height: number): void;
-	clear(red: number, green: number, blue: number, alpha: number): void;
-	clearchannel(channel: string, value: number): void;
-	copychannel(source_object: string, source_channel: string, destination_channel: string): void;
-	copypixels(source_object: string, dest_x: number,  dest_y: number, src_x: number, src_y: number, width: number, height: number): void;
-	flip(horizontal_flip: number, vertical_flip: number): void;
-	freepeer(): void;
-	fromnamedmatrix(matrixname: string): void;	
-	getpixel(x: number, y: number): number[];
-	setpixel(x: number, y: number, red: number, green: number, blue: number, alpha: number): void;	
-	swapxy(): void;
-	tonamedmatrix(matrixname: string): void;
-}
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LiveAPI                                                                                                            // 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // https://docs.cycling74.com/max7/vignettes/jsliveapi

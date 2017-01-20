@@ -147,6 +147,7 @@ declare class Folder {
 declare class Global {
 	constructor(name: string);
 	sendnamed(receive_name: string, property_name: string): void;
+	// TODO: Can have any property assigned to it
 }
 
 
@@ -186,7 +187,7 @@ declare class Max {
 	readonly appath: string;
 	readonly cmdkeydown: number;
 	readonly ctrlkeydown: number; 	
-	readonly db: any; // TODO: max.db
+	readonly db: any; // TODO: max.db? 
 	readonly frontpatcher: Patcher;
 	readonly isplugin: number;
 	readonly isruntime: number;
@@ -202,67 +203,67 @@ declare class Max {
 	checkpreempt(receive_object: string): void;
 	clean(): void;
 	closefile(symbol: string): void;
-	debug(enable: 0 | 1): void
-	enablepathcache(enable: 0 | 1): void
-	enablerefresh(enable: 0 | 1): void
-	externs(): void
-	fileformat(extension: string, filetype: string): void
-	fixwidthratio(ratio: number): void
-	getdefaultpatcherheight(object_name: string): void
-	getdefaultpatcherwidth(object_name: string): void
-	getenablepathcache(object_name: string): void
-	getenablerefresh(object_name: string): void
-	geteventinterval(object_name: string): void
-	getfixwidthratio(object_name: string): void
-	getpollthrottle(object_name: string): void
-	getqueuethrottle(object_name: string): void
-	getrefreshrate(object_name: string): void
-	getruntime(object_name: string): void
-	getsleep(object_name: string): void
-	getslop(object_name: string): void
-	getsysqelemthrottle(object_name: string): void
-	getsystem(object_name: string): void
-	getversion(object_name: string): void
-	hidecursor(): void
-	hidemenubar(): void
-	htmlref(object_name: string): void
-	interval(value: number): void
-	launchbrowser(url: string): void
-	maxcharheightforsubpixelantialiasing(points: number): void
-	maxinwmenu(enable: 0 | 1): void
-	maxwindow(): void
-	midi(...message: any[]): void
-	midilist(): void
-	nativetextrendering(enable: 0 | 1): void
-	notypeinfo(enable: 0 | 1): void
-	objectfile(object_name: string, file_name: string): void
-	openfile(reference_name: string, file_name: string): void
-	paths(): void
-	portabbrev(...message: any[]): void // TODO: Documentation is unclear
-	portenable(portname: string) : 0 | 1
-	portoffset(...message: any[])
+	debug(enable: 0 | 1): void;
+	enablepathcache(enable: 0 | 1): void;
+	enablerefresh(enable: 0 | 1): void;
+	externs(): void;
+	fileformat(extension: string, filetype: string): void;
+	fixwidthratio(ratio: number): void;
+	getdefaultpatcherheight(object_name: string): void;
+	getdefaultpatcherwidth(object_name: string): void;
+	getenablepathcache(object_name: string): void;
+	getenablerefresh(object_name: string): void;
+	geteventinterval(object_name: string): void;
+	getfixwidthratio(object_name: string): void;
+	getpollthrottle(object_name: string): void;
+	getqueuethrottle(object_name: string): void;
+	getrefreshrate(object_name: string): void;
+	getruntime(object_name: string): void;
+	getsleep(object_name: string): void;
+	getslop(object_name: string): void;
+	getsysqelemthrottle(object_name: string): void;
+	getsystem(object_name: string): void;
+	getversion(object_name: string): void;
+	hidecursor(): void;
+	hidemenubar(): void;
+	htmlref(object_name: string): void;
+	interval(value: number): void;
+	launchbrowser(url: string): void;
+	maxcharheightforsubpixelantialiasing(points: number): void;
+	maxinwmenu(enable: 0 | 1): void;
+	maxwindow(): void;
+	midi(...message: any[]): void;
+	midilist(): void;
+	nativetextrendering(enable: 0 | 1): void;
+	notypeinfo(enable: 0 | 1): void;
+	objectfile(object_name: string, file_name: string): void;
+	openfile(reference_name: string, file_name: string): void;
+	paths(): void;
+	portabbrev(...message: any[]): void; // TODO: Documentation is unclear
+	portenable(portname: string) : 0 | 1;
+	portoffset(...message: any[]);
 	preempt(mode: 0 | 1): void;
-	pupdate(x: number, y: number): void
-	quit(): void
-	refresh(): void
-	refreshrate(fps: number)
-	runtime(isRunstime: 0 | 1, ...message: any[]): void
-	sendapppath(object_name: string): void
-	sendinterval(object_name: string): void
-	setdefaultpatcherheight(height: number): void
-	setdefaultpatcherwidth(width: number): void
-	seteventinterval(interval: number): void
-	setmirrortoconsole(enable: 0 | 1): void
-	setpollthrottle(event_count: number): void
-	setqueuethrottle(event_count: number): void
-	setsleep(interval: number): void
-	setslop(slop_value: number): void
-	setsysqelemthrottle(event_count: number): void
-	showcursor(): void
-	showmenubar(): void
-	size(): void
-	system(os: "windows" | "macintosh", message: string): void
-	useslowbutcompletesearching(enable: 0 | 1): void
+	pupdate(x: number, y: number): void;
+	quit(): void;
+	refresh(): void;
+	refreshrate(fps: number);
+	runtime(isRunstime: 0 | 1, ...message: any[]): void;
+	sendapppath(object_name: string): void;
+	sendinterval(object_name: string): void;
+	setdefaultpatcherheight(height: number): void;
+	setdefaultpatcherwidth(width: number): void;
+	seteventinterval(interval: number): void;
+	setmirrortoconsole(enable: 0 | 1): void;
+	setpollthrottle(event_count: number): void;
+	setqueuethrottle(event_count: number): void;
+	setsleep(interval: number): void;
+	setslop(slop_value: number): void;
+	setsysqelemthrottle(event_count: number): void;
+	showcursor(): void;
+	showmenubar(): void;
+	size(): void;
+	system(os: "windows" | "macintosh", message: string): void;
+	useslowbutcompletesearching(enable: 0 | 1): void;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

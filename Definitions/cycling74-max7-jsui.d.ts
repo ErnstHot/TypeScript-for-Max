@@ -252,3 +252,130 @@ declare class Image {
 	tonamedmatrix(matrixname: string): void;
 }
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MaxCanvas                                                                                                          // 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+declare class MaxCanvas {
+	// TODO: 
+	// if (!jsui || !(jsui instanceof js)) {
+	//      post("missing or wrong argument for MaxCanvas, call \"new MaxCanvas(this);\"\n");
+	//      return;
+	// }
+	constructor(jsui: Object);
+	getContext(type: "max-2d"): CanvasRenderingContext2D;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CanvasRenderingContext2D                                                                                           // 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+declare class CanvasRenderingContext2D {
+	constructor(maxCanvas: MaxCanvas);
+	save(): void;
+	restore(): void;
+	scale(x: number, y: number): void;
+	rotate(x: number): void;
+	translate(x: number, y: number): void;
+	transform(m11: number, m12: number, m21: number, m22: number, dx: number, dy: number): void;
+	setTransform(m11: number, m12: number, m21: number, m22: number, dx: number, dy: number): void;
+	createLinearGradient(x0: number, y0: number, x1: number, y1: number): CanvasGradient;
+	createRadialGradient(x0: number, y0: number, r0: number, x1: number, y1: number, r1: number): CanvasGradient;
+	createPattern(image: Image, repetition: "repeat" | "repeat-x" | "repeat-y" | "no-repeat"): CanvasPattern;
+	clearRect(x: number, y: number, w: number, h: number): void;
+	fillRect(x: number, y: number, w: number, h: number): void;
+	strokeRect(x: number, y: number, w: number, h: number): void;
+	beginPath(): void;
+	closePath(): void;
+	moveTo(x: number, y: number): void;
+	lineTo(x: number, y: number): void;
+	quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void;
+	bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): void;
+	arcTo(x1: number, y1: number, x2: number, y2: number, radius: number);
+	rect(x: number, y: number, w: number, h: number): void;
+	arc(x: number, y: number, r: number, startAngle: number, endAngle: number, anticlockwise: number): void;
+	fill(): void;
+	stroke(): void;
+	isPointInPath(x: number, y: number): boolean;
+	fillText(text: string, x: number, y: number, maxWidth: number): void;
+	strokeText(text: string, x: number, y: number, maxWidth: number): void;
+	measureText(text: string): number;
+	drawImage(image: Image, dx: number, dy: number): void;
+	drawImage(image: Image, dx: number, dy: number, dw: number, dh: number): void;
+    drawImage(image: Image, sx: number, sy: number, sw: number, sh: number,
+    	dx: number, dy: number, dw: number, dh: number): void;
+    createImageData(sw: number, sh: number): ImageData;
+    createImageData(imagedata: ImageData): ImageData;
+    //getImageData(): ... not yet implemented in CanvasExtension.js
+    putImageData(imagedata: ImageData, dx: number, dy: number, not_used_dirtyX: number, not_used_dirtyY: number,
+    	not_used_dirtyWidth: number, not_used_dirtyHeight: number): void;
+	redraw(): void;
+	paint(): void;
+	roundedRect(x: number, y: number, w: number, h: number, ow: number, oh: number): void;
+	setTimeout(expression: Object, timeout: number): Task;
+	clearInterval(task: Task): void;
+	setSource(style: CanvasPattern | CanvasGradient | string): void;
+	parseFontString(font: string): any[];
+	getTextAlign(textString: string): number;
+	getTextBaseline(): number;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CanvasGradient                                                                                                     // 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+declare class CanvasGradient {
+	constructor(patternObj: Pattern, radiHelper: any); 	// TODO: radiHelper: any ?
+	addColorStop(offset: number, color: any);			// TODO: color: any ?
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CanvasPattern                                                                                                      // 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+declare class CanvasPattern {
+	constructor(pat: any, rep: any); // TODO: any?
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ImageData                                                                                                          // 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+declare class ImageData {
+	constructor(sketchimage: any); // TODO: any?
+	set(index: number, value: number): void;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// CanvasPixelArray                                                                                                   // 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+declare class CanvasPixelArray {
+	readonly length: number;
+	array(index: number): number;
+	array(index: number, value: number): void;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// RGBAColor                                                                                                          // 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+declare class RGBAColor {
+	constructor(color: string, globalAlpha: number);
+	readonly ok: boolean;
+	r: number;
+	g: number;
+	b: number;
+	a: number;
+	toRGB(): string;
+	toHex(): string;
+}
+
+declare function hslToRgba(h: number, s: number, l: number, a: number): number[];

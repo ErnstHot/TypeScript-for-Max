@@ -8,7 +8,7 @@ declare var outlets: number;
 declare var autowatch: number;
 declare var jsarguments: any[];
 declare var arguments: any[];
-declare var box: any; // TODO: Proper definition
+declare var box: Maxobj;
 declare var editfontsize: number;
 declare var inlet: number;
 declare var max: any; // TODO: Any?

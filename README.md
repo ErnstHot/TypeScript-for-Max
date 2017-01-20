@@ -1,15 +1,14 @@
-TYPESCRIPT FOR CYCLING '74 MAX / MSP / JITTER
+***TypeScript for Cycling '74 Max / MSP / Jitter***
 
 Extract this archive in Max' search path.
 
 Follow this guide to set up Sublime Text and TypeScript:
 https://cmatskas.com/getting-started-with-typescript-and-sublime-text/
 
-This has not been thoroughly tested and has plenty of TODO's in the definition files, but
-the grunt work of writing the definitions has been done. Expect bugs and missing definitions.
+This has not been thoroughly tested and has plenty of TODO's in the definition files, but the grunt work of writing the definitions has been done. Expect bugs and missing definitions.
 
 
-INCLUDED IN THIS ARCHIVE
+**Included in this archive**
 
     /Definitions
         cycling74-max7.d.ts         Definition file for JavaScript in Max
@@ -28,18 +27,18 @@ INCLUDED IN THIS ARCHIVE
         ExampleJSUI.ts              Example [jsui] code
         tsconfig.json               TypeScript configuration file
 
-The TypeScript configuration files (tsconfig.json) are set up to merge each example into one
-JavaScript output file, this is the only way I have been able to get modules to work so far. Make
-sure compiled JavaScript files are in Max' search path.
+The TypeScript configuration files (tsconfig.json) are set up to merge each example into one JavaScript output file, this is the only way I have been able to get modules to work so far. Make sure compiled JavaScript files are in Max' search path.
 
 For more information on configuration files, look here:
 https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
 
 
-ASSIGNING PROPERTIES TO OBJECTS OF TYPE GLOBAL
+**Assigning properties to objects of type Global**
 
-Cast to <any> to assign properties to objects of type Global like so:
-	var g = new Global("Foo");
-	(<any>g).newProperty = "I am new.";
-	post("(<any>g).newProperty: " + (<any>g).newProperty + "\n");
+Cast to ```<any>``` to assign properties to objects of type ```Global``` like so:
+```
+var g = new Global("Foo");
+(<any>g).newProperty = "I am new.";
+post("(<any>g).newProperty: " + (<any>g).newProperty + "\n");
+```
 

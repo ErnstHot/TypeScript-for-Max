@@ -1,5 +1,6 @@
 var ExampleModule;
 (function (ExampleModule) {
+    // These two functions are painfully slow ;)
     function colorFn(x) {
         return [Math.sin(x) * 0.5 + 0.5,
             Math.sin(x + 0.333 * Math.PI) * 0.5 + 0.5,
@@ -42,6 +43,10 @@ function bang() {
     var theObject = new em.TheClass(42);
     post("theObject.getIndex(): " + theObject.getIndex() + "\n");
     post("The square of pi is " + em.square(Math.PI) + "\n");
+    // Cast to <any> to assign properties to objects of type Global.
+    var g = new Global("");
+    g.newProperty = "I am new.";
+    post("(<any>g).newProperty: " + g.newProperty + "\n");
 }
 function msg_float(v) {
     outlet(0, em.square(v));

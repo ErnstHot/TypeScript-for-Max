@@ -48,7 +48,7 @@ var a = 10.0;
 var b = 2.0;
 var div = 8;
 function paint() {
-    var width = this.box.rect[2] - this.box.rect[0];
+    var width = box.rect[2] - this.box.rect[0];
     var height = this.box.rect[3] - this.box.rect[1];
     m.set_source_rgba(0.0, 0.0, 0.0, 1.0);
     m.rectangle(0, 0, width, height);

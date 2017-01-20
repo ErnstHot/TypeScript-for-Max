@@ -27,8 +27,8 @@ https://cmatskas.com/getting-started-with-typescript-and-sublime-text/
         tsconfig.json               TypeScript configuration file
 
     /JavaScript
-        ExampleJS.js                JavaScript code generated from ExampleJS.js 
-        ExampleJS.js                JavaScript code generated from ExampleJSUI.js 
+        ExampleJS.js                JavaScript code generated from ExampleJS.js and ExampleModule.ts
+        ExampleJS.js                JavaScript code generated from ExampleJSUI.js and ExampleModule.ts
 
 The TypeScript configuration files (tsconfig.json) are set up to merge each example into one JavaScript output file, this is the only way I have been able to get modules to work so far. Make sure compiled JavaScript files are in Max' search path.
 

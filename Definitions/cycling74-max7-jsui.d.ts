@@ -44,10 +44,10 @@ declare class MGraphics {
 	font_extents(): number[];
 	text_measure(): number[];
 	getfontlist(): string[];
-	pattern_create_rgba(red: number, green: number, blue: number, alpha: number): any;
-	pattern_create_for_surface(image: Image): any;
-	pattern_create_linear(x1: number, y1: number, x2: number, y2: number): any;
-	pattern_create_radial(x1: number, y1: number, rad1: number, x2: number, y2: number, rad2: number): any;
+	pattern_create_rgba(red: number, green: number, blue: number, alpha: number): Pattern;
+	pattern_create_for_surface(image: Image): Pattern;
+	pattern_create_linear(x1: number, y1: number, x2: number, y2: number): Pattern;
+	pattern_create_radial(x1: number, y1: number, rad1: number, x2: number, y2: number, rad2: number): Pattern;
 	translate(x: number, y: number): void;
 	scale(scale_x: number, scale_y: number): void;
 	rotate(rad: number): void;
@@ -66,7 +66,7 @@ declare class MGraphics {
 	set_source_rgba(red: number, green: number, blue: number, alpha: number): void;
 	set_source_rgb(rgb: number[]): void;
 	set_source_rgb(red: number, green: number, blue: number): void;
-	set_source(pattern: any): void;
+	set_source(pattern: Pattern): void;
 	set_source_surface(surface: any): void;
 	scale_source_rgba(red: number, green: number, blue: number): void;
 	translate_source_rgba(red: number, green: number, blue: number): void;
@@ -91,6 +91,26 @@ declare class MGraphics {
 	stroke_preserve_with_alpha(alpha: number): void;
 }
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// Pattern                                                                                                            // 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// http://max-javascript-reference.tim-schenk.de/symbols/Pattern.html
+
+declare class Pattern {
+	constructor();
+	add_color_stop_rgba(index: number, red: number, green: number, blue: number, alpha: number): void;
+	get_extend(): string;
+	get_matrix(): number[];
+	get_type(): string;
+	identity_matrix(): void;
+	rotate(rotation: number): void;
+	scale(x: number, y: number): void;
+	set_extend(extend_type: string): void;
+	set_matrix(xx: number, xy: number, yx: number, yy: number, x0: number, y0: number): void; 
+	translate(x: number, y: number): void;
+}
+ 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Sketch                                                                                                             // 

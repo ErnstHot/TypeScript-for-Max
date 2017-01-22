@@ -130,6 +130,18 @@ declare class JitterGUITracker {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// JitterEvent                                                                                                        // 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// http://max-javascript-reference.tim-schenk.de/symbols/JitterEvent.html
+
+declare class JitterEvent {
+	args: any;
+	eventname: string;
+	subjectname: string;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // JitterGUIElement                                                                                                   // 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // http://max-javascript-reference.tim-schenk.de/symbols/JitterGUIElement.html
@@ -153,7 +165,7 @@ declare class JitterGUIElement {
 	drawto(destination: any): void;
 	free(): any;
 	get_intersect(raystart: any, rayend: any, p1: any): any;
-	handle_event(event: any): any;
+	handle_event(event: JitterEvent): any;
 	init(destination: any): any;
 	set_attr_args(...args: any[]);
 	set_unique_index(k: any): any;
@@ -162,7 +174,7 @@ declare class JitterGUIElement {
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Jitter3dUtils                                                                                             // 
+// Jitter3dUtils                                                                                                      // 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // http://max-javascript-reference.tim-schenk.de/symbols/Jitter3dUtilsInterface.html
 // /jsextensions/jitter/Jitter3DUtils.js

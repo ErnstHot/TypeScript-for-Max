@@ -615,56 +615,384 @@ declare class Pattern {
 }
  
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Sketch                                                                                                             // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// https://docs.cycling74.com/max7/vignettes/jssketchobject
-
+/**
+ * Sketch
+ * Every instance of jsui has an instance of Sketch bound to the variable "sketch". This is often the only instance of Sketch you will need to use. However, if you want to do things like render sprites, have multiple layers of images, or use drawing commands to create alpha channels for images, then you can create additional instances to render in. By default, when any function in your jsui object has been called the context is already set for the instance of Sketch bound to the variable "sketch".
+ * https://docs.cycling74.com/max7/vignettes/jssketchobject
+ */
 declare class Sketch {
+
+	/**
+	 * create a new instance of Sketch with default width and height
+	 */
 	constructor();
+
+	/**
+	 * create a new instance of sketch with specified width and height
+	 * @param {number} width  [description]
+	 * @param {number} height [description]
+	 */
 	constructor(width: number, height: number);	
-	move(delta_x: number, delta_y: number, delta_z: number): void;	
+
+	/**
+	 * Moves the drawing position to the location specified by the sum of the current drawing position and the delta x, y, and z arguments.
+	 * @param {number} delta_x [description]
+	 * @param {number} delta_y [description]
+	 * @param {number} delta_z [description]
+	 */
+	move(delta_x: number, delta_y: number, delta_z: number): void;
+
+	/**
+	 * Moves the drawing position to the location specified by the x, y, and z arguments.
+	 * @param {number} x [description]
+	 * @param {number} y [description]
+	 * @param {number} z [description]
+	 */
 	moveto(x: number, y: number, z: number): void;
+
+	/**
+	 * Draws a point at the location specified by the x, y, and z arguments. After this method has been called, the drawing position is updated to the location specified by the x, y, and z arguments.
+	 * @param {number} x [description]
+	 * @param {number} y [description]
+	 * @param {number} z [description]
+	 */
 	point(x: number, y: number, z: number): void;
+
+	/**
+	 * Draws a line from the current drawing position to the location specified the sum of the current drawing position and the delta x, y, and z arguments. After this method has been called, the drawing position is updated to the location specified by the sum of the current drawing position and the delta x, y, and z arguments.
+	 * @param {number} delta_x [description]
+	 * @param {number} delta_y [description]
+	 * @param {number} delta_z [description]
+	 */
 	line(delta_x: number, delta_y: number, delta_z: number): void;
+
+	/**
+	 * Draws a line from the current drawing position to the location specified by the x, y, and z arguments. After this method has been called, the drawing position is updated to the location specified by the x, y, and z arguments.
+	 * @param {number} x [description]
+	 * @param {number} y [description]
+	 * @param {number} z [description]
+	 */
 	lineto(x: number, y: number, z: number): void;
+	
+	/**
+	 * Draws a line from the location specified by the x1, y1, and z1 arguments to the location specified by the x2, y2, and z2 arguments. After this method has been called, the drawing position is updated to the location specified by the x2, y2, and z2 arguments.
+	 * @param {number} x1 [description]
+	 * @param {number} y1 [description]
+	 * @param {number} z1 [description]
+	 * @param {number} x2 [description]
+	 * @param {number} y2 [description]
+	 * @param {number} z2 [description]
+	 */
 	linesegment(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number): void;
+
+	/**
+	 * Draws a filled triangle with three corners specified by the x1, y1, z1, x2, y2, z2, x3, y3, and z3 arguments. After this method has been called, the drawing position is updated to the location specified by the x3, y3, and z3 arguments.
+	 * @param {number} x1 [description]
+	 * @param {number} y1 [description]
+	 * @param {number} z1 [description]
+	 * @param {number} x2 [description]
+	 * @param {number} y2 [description]
+	 * @param {number} z2 [description]
+	 * @param {number} x3 [description]
+	 * @param {number} y3 [description]
+	 * @param {number} z3 [description]
+	 */
 	tri(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number, x3:	number, y3: number, z3: number): void;
+	
+	/**
+	 * Draws a framed triangle with three corners specified by the x1, y1, z1, x2, y2, z2, x3, y3, and z3 arguments. After this method has been called, the drawing position is updated to the location specified by the x3, y3, and z3 arguments.
+	 * @param {number} x1 [description]
+	 * @param {number} y1 [description]
+	 * @param {number} z1 [description]
+	 * @param {number} x2 [description]
+	 * @param {number} y2 [description]
+	 * @param {number} z2 [description]
+	 * @param {number} x3 [description]
+	 * @param {number} y3 [description]
+	 * @param {number} z3 [description]
+	 */
 	frametri(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number, x3: number, y3: number, z3: number): void;
+
+	/**
+	 * Draws a filled quadrilateral with four corners specified by the x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, and z4 arguments. After this method has been called, the drawing position is updated to the location specified by the x4, y4, and z4 arguments.
+	 * @param {number} x1 [description]
+	 * @param {number} y1 [description]
+	 * @param {number} z1 [description]
+	 * @param {number} x2 [description]
+	 * @param {number} y2 [description]
+	 * @param {number} z2 [description]
+	 * @param {number} x3 [description]
+	 * @param {number} y3 [description]
+	 * @param {number} z3 [description]
+	 * @param {number} x4 [description]
+	 * @param {number} y4 [description]
+	 * @param {number} z4 [description]
+	 */
 	quad(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number, x3: number, y3: number, z3: number, x4: number, y4: number, z4: number): void;
+
+	/**
+	 * Draws a framed quadrilateral with four corners specified by the x1, y1, z1, x2, y2, z2, x3, y3, z3, x4, y4, and z4 arguments. After this method has been called, the drawing position is updated to the location specified by the x4, y4, and z4 arguments.
+	 * @param {number} x1 [description]
+	 * @param {number} y1 [description]
+	 * @param {number} z1 [description]
+	 * @param {number} x2 [description]
+	 * @param {number} y2 [description]
+	 * @param {number} z2 [description]
+	 * @param {number} x3 [description]
+	 * @param {number} y3 [description]
+	 * @param {number} z3 [description]
+	 * @param {number} x4 [description]
+	 * @param {number} y4 [description]
+	 * @param {number} z4 [description]
+	 */
 	framequad(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number, x3: number, y3: number, z3: number, x4: number, y4: number, z4: number): void;
+	
+	/**
+	 * Draws a filled circle with radius specified by the radius argument. If theta_start and theta_end are specified, then an arc will be drawn instead of a full circle. The theta_start and theta_end arguments are in terms of degrees(0-360). The current shapeorient, shapeslice, and shapeprim values will also affect the drawing.
+	 * @param {number} radius      [description]
+	 * @param {number} theta_start [description]
+	 * @param {number} theta_end   [description]
+	 */
 	circle(radius: number, theta_start: number, theta_end: number): void;
+
+	/**
+	 * Draws a cube with width 2*scale_x, height 2*scale_y, depth 2*scale_z, and center point at the current drawing position. If the scale_y and scale_z arguments are not specified, they will assume the same value as scale_x. The current shapeorient, shapeslice, and shapeprim values will also affect the drawing.
+	 * @param {number} scale_x [description]
+	 * @param {number} scale_y [description]
+	 * @param {number} scale_z [description]
+	 */
 	cube(scale_x: number, scale_y: number, scale_z: number): void;
+	
+	/**
+	 * Draws a cylinder with top radius specified by the radius1 argument, bottom radius specified by the radius2 argument, length specified by the mag argument, and center point at the current drawing position. If the theta_start and theta_end arguments are specified, then a patch will be drawn instead of a full cylinder. The theta_start and theta_end arguments are in terms of degrees(0-360). The current shapeorient, shapeslice, and shapeprim values will also affect the drawing.
+	 * @param {number} radius1     [description]
+	 * @param {number} radius2     [description]
+	 * @param {number} mag         [description]
+	 * @param {number} theta_start [description]
+	 * @param {number} theta_end   [description]
+	 */
 	cylinder(radius1: number, radius2: number, mag: number, theta_start: number, theta_end: number): void;
+
+	/**
+	 * Draws a filled ellipse with radii specified by the radius1 and radius2 arguments. If theta_start and theta_end are specified, then an arc will be drawn instead of a full ellipse. The theta_start and theta_end arguments are in terms of degrees(0-360). The current shapeorient, shapeslice, and shapeprim values will also affect the drawing.
+	 * @param {number} radius1     [description]
+	 * @param {number} radius2     [description]
+	 * @param {number} theta_start [description]
+	 * @param {number} theta_end   [description]
+	 */
 	ellipse(radius1: number, radius2: number, theta_start: number, theta_end: number): void;
+
+	/**
+	 * Draws a framed circle with radius specified by the radius argument. If theta_start and theta_end are specified, then an arc will be drawn instead of a full circle. The theta_start and theta_end arguments are in terms of degrees(0-360). The current shapeorient, shapeslice, and shapeprim values will also affect the drawing.
+	 * @param {number} radius      [description]
+	 * @param {number} theta_start [description]
+	 * @param {number} theta_end   [description]
+	 */
 	framecircle(radius: number, theta_start: number, theta_end: number): void;
+
+	/**
+	 * Draws a framed ellipse with radii specified by the radius1 and radius2 arguments. If theta_start and theta_end are specified, then an arc will be drawn instead of a full ellipse. The theta_start and theta_end arguments are in terms of degrees(0-360). The current shapeorient, shapeslice, and shapeprim values will also affect the drawing.
+	 * @param {number} radius1     [description]
+	 * @param {number} radius2     [description]
+	 * @param {number} theta_start [description]
+	 * @param {number} theta_end   [description]
+	 */
 	frameellipse(radius1: number, radius2: number, theta_start: number, theta_end: number): void;
+
+	/**
+	 * Draws a plane with top width 2*scale_x1, left height 2*scale_y1, bottom width 2*scale_x2, right height 2*scale_y2, and center point at the current drawing position. If scale_y1 is not specified, it will assume the same value as scale_x1. If scale_x2 and scale_y2 are not specified, they will assume the same values as scale_x1 and scale_y1 respectively. The current shapeorient, shapeslice, and shapeprim values will also affect the drawing.
+	 * @param {number} scale_x1 [description]
+	 * @param {number} scale_y1 [description]
+	 * @param {number} scale_x2 [description]
+	 * @param {number} scale_y2 [description]
+	 */
 	plane(scale_x1: number, scale_y1: number, scale_x2: number, scale_y2: number): void;
+
+	/**
+	 * Draws a rounded plane with width 2*scale_x, and height 2*scale_y and center point at the current drawing position. The size of the rounded portion of the plane is determined by the round_amount argument. If scale_y is not specified, it will assume the same value as scale_x. The current shapeorient, shapeslice, and shapeprim values will also affect the drawing.
+	 * @param {number} round_amount [description]
+	 * @param {number} scale_x      [description]
+	 * @param {number} scale_y      [description]
+	 */
 	roundedplane(round_amount: number, scale_x: number, scale_y: number): void;
+
+	/**
+	 * Draws a sphere with radius specified by the radius argument and center point at the current drawing position. If the theta1_start, theta1_end, theta2_start, and theta2_end arguments are specified, then a patch will be drawn instead of a full sphere. The theta1_start, theta1_end, theta2_start, and theta2_end arguments are in terms of degrees(0-360). The current shapeorient, shapeslice, and shapeprim values will also affect the drawing.
+	 * @param {number} radius       [description]
+	 * @param {number} theta1_start [description]
+	 * @param {number} theta1_end   [description]
+	 * @param {number} theta2_start [description]
+	 * @param {number} theta2_end   [description]
+	 */
 	sphere(radius: number, theta1_start: number, theta1_end: number, theta2_start: number, theta2_end: number): void;
+
+	/**
+	 * Draws a torus with major radius specified by the radius1 argument, minor radius specified by the radius2 argument, and center point at the current drawing position. If theta1_start, theta1_end, theta2_start, and theta2_end are specified, then a patch will be drawn instead of a full torus. The theta1_start, theta1_end, theta2_start, and theta2_end arguments are in terms of degrees(0-360). The current shapeorient, shapeslice, and shapeprim values will also affect the drawing.
+	 * @param {number} radius1      [description]
+	 * @param {number} radius2      [description]
+	 * @param {number} theta1_start [description]
+	 * @param {number} theta1_end   [description]
+	 * @param {number} theta2_start [description]
+	 * @param {number} theta2_end   [description]
+	 */
 	torus(radius1: number, radius2: number, theta1_start: number, theta1_end: number, theta2_start: number, theta2_end: number): void;
+
+	/**
+	 * Sets the rotation for drawing internal to any of the "shape" drawing methods to the rotation specified by the x_rot, y_rot, and rotation_x, rotation_y, and rotation_z arguments.
+	 * See documentation for an example.
+	 * @param {number} rotation_x [description]
+	 * @param {number} rotation_y [description]
+	 * @param {number} rotation_z [description]
+	 */
 	shapeorient(rotation_x: number, rotation_y: number, rotation_z: number): void;
+
+	/**
+	 * Sets the number of slices to use when rendering any of the "shape" drawing methods. Increasing the slice_a and slice_b arguments will increase the quality at which the shape is rendered, while decreasing these values will improve performance.
+	 * @param {number} slice_a [description]
+	 * @param {number} slice_b [description]
+	 */
 	shapeslice(slice_a: number, slice_b: number): void;
+	
+	/**
+	 * Sets the OpenGL drawing primitive to use within any of the "shape" drawing methods. Acceptable values for the draw_prim argument are the following strings: lines, line_loop, line_strip, points, polygon, quads, quad_grid, quad_strip, triangles, tri_grid, tri_fan, tri_strip.
+	 * @param {string} draw_prim [description]
+	 */
 	shapeprim(draw_prim: string): void;
+	
+	/**
+	 * Sets the current font to the fontname specified by the fontname argument.
+	 * @param {string} fontname [description]
+	 */
 	font(fontname: string): void;
+
+	/**
+	 * Sets the fontsize to the size specified by the points argument. Note that this size is an absolute, rather than relative value.
+	 * @param {number} points [description]
+	 */
 	fontsize(points: number): void;
+
+	/**
+	 * Returns an array containing the width and height of the given string in absolute screen coordinates, taking into account the current font and fontsize.
+	 * @param  {string}   str [description]
+	 * @return {number[]}     [description]
+	 */
 	gettextinfo(str: string): number[];
+
+	/**
+	 * Draws the text specified by the string argument at the current drawing position, taking into account the current font, fontsize, and text alignment. Text is strictly 2D, and does not take into account any world transformations. After calling the text method, if the x axis text alignment is set to "left", the current drawing position will be updated to reflect the world position associated with the end of the string. If the x axis text alignment is set to "right", the current drawing position will be updated to reflect the world position associated with the end of the string. If the x axis text alignment is set to "center", the current drawing position will remain unchanged.
+	 * @param {string} str [description]
+	 */
 	text(str: string): void;
+
+	/**
+	 * Sets the alignment of text to be drawn with respect to the current drawing position. Acceptable values for the x axis alignment are: "left", "right", or "center". Acceptable values for the y axis alignment are: "bottom", "top", or "center". The default alignment is "left", "bottom".
+	 * @param {string} align_x [description]
+	 * @param {string} align_y [description]
+	 */
 	textalign(align_x: string, align_y: string): void;
+
+	/**
+	 * Copies pixels from the source object to the location specified by the destination_x and destination_y arguments. The initial x and y offset into the source and size of the rectangle copied can be speified by the source_x, source_y, width and height arguments. If these are not present an x and y offset of zero and width and height equal to the source image is assumed. No scaling of pixels is supported. The source object can either be an instance of Image, or Sketch. If blending is enabled in the destination sketch object, alpha blending will be performed and the current alpha color will also be applied globally. The copypixels method is much faster than obtaining the equivalent result using glbindtexture() to texture a plane, and is the recommended means of drawing images when scaling and rotation is not required.
+	 * @param {string} source_object [description]
+	 * @param {number} destination_x [description]
+	 * @param {number} destination_y [description]
+	 * @param {number} source_x      [description]
+	 * @param {number} source_y      [description]
+	 * @param {number} width         [description]
+	 * @param {number} height        [description]
+	 */
 	copypixels(source_object: string, destination_x: number, destination_y: number, source_x: number, source_y: number, width: number, height: number): void;
+
+	/**
+	 * Returns the depth value associated with the currently rendered pixel at a given absolute screen coordinate.
+	 * @param  {number} x [description]
+	 * @param  {number} y [description]
+	 * @return {number}   [description]
+	 */
 	depthatpixel(x: number, y: number): number;
+
+	/**
+	 * Frees the image data from the native c peer, which is not considered by the JavaScript garbage collector, and may consume lots of memory until the garbage collector decides to run based on JS allocated memory. Once called, the Sketch object is not available for any other use.
+	 */
 	freepeer(): void;
+	
+	/**
+	 * Returns an array containing the pixel value at the specified location. This array is ordered RGBA, i.e. array element 0 is red, 1, green, 2, blue, 3 alpha. Color values are floating point numbers in the range 0.-1.
+	 * @param  {number}   x [description]
+	 * @param  {number}   y [description]
+	 * @return {number[]}   [description]
+	 */
 	getpixel(x: number, y: number): number[];
+	
+	/**
+	 * Sets the pixel value at the specified location. Color values are floating point numbers in the range 0.-1.
+	 * @param {number} x     [description]
+	 * @param {number} y     [description]
+	 * @param {number} red   [description]
+	 * @param {number} green [description]
+	 * @param {number} blue  [description]
+	 * @param {number} alpha [description]
+	 */
 	setpixel(x: number, y: number, red: number, green: number, blue: number, alpha: number): void;
+
+	/**
+	 * Returns an array containing the x, y, and z world coordinates associated with a given screen pixel using the same the depth from the camera as 0,0,0. Optionally a third depth arg may be specified, which may be useful for hit detection and other applications. The depth value is typically specified in the range 0.-1. where 0 is the near clipping plane, and 1. is the far clipping plane. The worldtoscreen method can be used to determine the depth value of a given world coordinate, and the depthatpixel method can be used to determine the depth value associated with the currently rendered pixel at a given absolute screen coordinate.
+	 * @param  {number}   x [description]
+	 * @param  {number}   y [description]
+	 * @return {number[]}   [description]
+	 */
 	screentoworld(x: number, y: number): number[];
+	
+	/**
+	 * Returns an array containing the x, y, and depth screen coordinates associated with a given world coordinate. The depth value is typically specified in the range 0.-1. where 0 is the near clipping plane, and 1. is the far clipping plane.
+	 * @param  {number}   x [description]
+	 * @param  {number}   y [description]
+	 * @param  {number}   z [description]
+	 * @return {number[]}   [description]
+	 */
 	worldtoscreen(x: number, y: number, z: number): number[];
-	beginstroke(stroke_style: string): void;
+
+	/**
+	 * Begin definition of a stroked path of the style specified by the stroke_style argument. Currently supported stroke styles are "basic2d" and "line".
+	 * @param {"basic2d" | "line"} stroke_style [description]
+	 */
+	beginstroke(stroke_style: "basic2d" | "line"): void;
+
+	/**
+	 * End definition of a stroked path, and render the path.
+	 */
 	endstroke(): void;
+
+	/**
+	 * Set the current value of the parameter specified by the parameter_name argument to be the value specified by parameter_values argument(s). Some parameters are global for the extent of a stroked path definition, while others may vary on a point by point basis.
+	 * @param {string} parameter_name [description]
+	 * @param {any[]}  ...args        [description]
+	 */
 	strokeparam(parameter_name: string, ...args: any[]): void;
+
+	/**
+	 * Defines an anchor point at the location specified by the x, y, and z arguments. Some stroke styles such as "basic2d" will ignore the z coordinate.
+	 * @param {number} x [description]
+	 * @param {number} y [description]
+	 * @param {number} z [description]
+	 */
 	strokepoint(x: number, y: number, z: number): void;
+
+	/**
+	 * The default2d method is a simple way to set the graphics state to default properties useful for 2D graphics. It is called everytime your object is resized if default2d() has been called more recently than default3d().
+	 */
 	default2d(): void;
+	
+	/**
+	 * The default3d method is a simple way to set the graphics state to default properties useful for 3D graphics. It is called everytime the jsui object is resized if default3d() has been called more recently than default2d().
+	 */
 	default3d(): void;
+
+	/**
+	 * The orth3d method is a simple way to set the graphics state to default properties useful for 3D graphics, using an orthographic projection (i.e. object scale is not affected by distance from the camera). It is called every time the jsui object is resized if ortho3d() has been called more recently than default2d(), or default3d().
+	 */
 	ortho3d(): void;
+
 	glbegin(draw_prim: any[]): void;
 	glbindtexture(image_object: string): void;	
 	glblendfunc(src_function: string, dst_function: string): void;
@@ -730,33 +1058,221 @@ declare class Sketch {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // https://docs.cycling74.com/max7/vignettes/jsimageobject
 
+/**
+ * Image
+ * The Image object can be used to draw images in an instance of the Sketch. It is possible to load image files from disk, create images from instances of Sketch, or generate them manually. The Image object has several methods to assist in manipulating images once generated. Note that alphablending is on by default in sketch. Certain file formats which contain alpha channels such as PICT or TIFF may have their alpha channel set all off. File formats which do not contain an alpha channel such as JPEG, by default have an alpha channel of all on. If you are having trouble seeing an image when attempting to draw in an instance of Sketch, you may want to either turn off blending with gldisable("blend"), or set the alpha channel to be all on with clearchannel("alpha",1.).
+ * https://docs.cycling74.com/max7/vignettes/jsimageobject
+ */
 declare class Image {
 	// TODO: Not like this.
+
+	/**
+	 * create a new Image instance with default width and height
+	 */
 	constructor();
+
+	/**
+	 * create a new Image instance from a file from disk
+	 * @param {string} filename [description]
+	 */
 	constructor(filename: string);
+
+	/**
+	 * create a new Image instance from another instance of Image
+	 * @param {Image} image [description]
+	 */
 	constructor(image: Image);
+
+	/**
+	 * create a new Image instance from an instance of Sketch
+	 * @param {Sketch} sketch [description]
+	 */
 	constructor(sketch: Sketch);
+
+	/**
+	 * reate a new Image instance with the specified witdth and height
+	 * @param {number} width  [description]
+	 * @param {number} height [description]
+	 */
 	constructor(width: number, height: number);
-	size: number[];	
+
+	/**
+	 * Access or set the size of an image. size[0] is width size[1] is height.
+	 * @type {number[]}
+	 */
+	size: number[];
+
+	/**
+	 * Adjusts all channel values in the image channel specified by the channel argument, by multiplying the channel value by the value specified by the scale argument and then adding the value specified by the bias argument. The resulting channel is clipped to the range 0.-1. Acceptable values for the channel argument are the strings: "red", "green", "blue", or "alpha".
+	 * @param {"red" |     "green"       | "blue" | "alpha"} channel [description]
+	 * @param {number}   scale [description]
+	 * @param {number}   bias  [description]
+	 */
 	adjustchannel(channel: "red" | "green" | "blue" | "alpha", scale: number, bias:number): void;
-	alphachroma(red: number, green: number, blue: number, tolerance: number, fade: number, minkey: number, maxkey: number): void;	
-	blendchannel(source_object: any, alpha: number, source_channel: "red" | "green" | "blue" | "alpha", destination_channel: "red" | "green" | "blue" | "alpha"): void;	 
+	
+	/**
+	 * Generates an alpha channel based on the chromatic distance from the specified RGB target color. If no tolerance, fade or minkey arguments are specified they are assumed to be 0. If no maxkey argument is specified, it is assumed to be 1.
+	 * @param {number} red       [description]
+	 * @param {number} green     [description]
+	 * @param {number} blue      [description]
+	 * @param {number} tolerance [description]
+	 * @param {number} fade      [description]
+	 * @param {number} minkey    [description]
+	 * @param {number} maxkey    [description]
+	 */
+	alphachroma(red: number, green: number, blue: number, tolerance: number, fade: number, minkey: number, maxkey?: number): void;
+
+	/**
+	 * Similar to the copychannel method, except supports a blend amount specified by the alpha argument. The source object can only be an instance of Image (not Sketch). If the source object is not the same size as the destination object, then rectangle composed of the minimum width and height of each, is the rectangle of values which will be blended. Acceptable values for the channel arguments are the strings: "red", "green", "blue", or "alpha".
+	 * @param {any}      source_object [description]
+	 * @param {number}   alpha         [description]
+	 * @param {"red" | "green" | "blue" | "alpha"} source_channel      [description]
+	 * @param {"red" |  "green" | "blue" | "alpha"} destination_channel [description]
+	 */
+	blendchannel(source_object: any, alpha: number, source_channel: "red" | "green" | "blue" | "alpha", destination_channel: "red" | "green" | "blue" | "alpha"): void;
+
+	/**
+	 * Similar to the copypixels method, except supports alpha blending, including a global alpha value specified by the alpha argument. This global alpha value is multiplied by the source object's alpha channel at each pixel. Instances of Sketch do not contain an alpha channel, which is assumed to be all on. The source object can either be an instance of Image, or Sketch.
+	 * @param {any}    source_object [description]
+	 * @param {number} alpha         [description]
+	 * @param {number} dest_x        [description]
+	 * @param {number} dest_y        [description]
+	 * @param {number} rc_x          [description]
+	 * @param {number} src_y         [description]
+	 * @param {number} width         [description]
+	 * @param {number} height        [description]
+	 */
 	blendpixels(source_object: any, alpha: number, dest_x: number, dest_y: number, rc_x: number, src_y: number, width: number, height: number): void;
+
+	/**
+	 * Sets all pixels in the image to be the value specified by the red, green, blue, and alpha arguments. If no arguments are specified, these values are assumed to be (0, 0, 0, 1) respectively.
+	 */
+	clear(): void;
+
+	/**
+	 * Sets all pixels in the image to be the value specified by the red, green, blue, and alpha arguments. If no arguments are specified, these values are assumed to be (0, 0, 0, 1) respectively.
+	 * @param {number} red   [description]
+	 * @param {number} green [description]
+	 * @param {number} blue  [description]
+	 * @param {number} alpha [description]
+	 */
 	clear(red: number, green: number, blue: number, alpha: number): void;
-	clearchannel(channel: string, value: number): void;
-	copychannel(source_object: string, source_channel: string, destination_channel: string): void;
+
+	/**
+	 * Sets all channel values in the image channel specified by the channel argument to be the value specified by the value argument. If no value argument is specified, it is assumed to be 0. Acceptable values for the channel argument are the strings: "red", "green", "blue", or "alpha".
+	 * @param {"red" | "green" | "blue" | "alpha"} channel [description]
+	 * @param {number} value   [description]
+	 */
+	clearchannel(channel: "red" | "green" | "blue" | "alpha", value: number): void;
+
+	/**
+	 * Copies the channel values from the source object's channel specified by the source_channel argument to the destination object's channel specified by the destination_channel argument. The source object can only be an instance of Image (not Sketch). If the source object is not the same size as the destination object, then rectangle composed of the minimum width and height of each, is the rectangle of values which will be copied. Acceptable values for the channel arguments are the strings: "red", "green", "blue", or "alpha".
+	 * @param {string} source_object       [description]
+	 * @param {"red" | "green" | "blue" | "alpha"} source_channel      [description]
+	 * @param {"red" | "green" | "blue" | "alpha"} destination_channel [description]
+	 */
+	copychannel(source_object: string, source_channel: "red" | "green" | "blue" | "alpha", destination_channel: "red" | "green" | "blue" | "alpha"): void;
+
+	/**
+	 * Copies pixels from the source object to the location specified by the destination_x and destination_y arguments. The initial x and y offset into the source and size of the rectangle copied can be speified by the source_x, source_y, width and height arguments. If these are not present an x and y offset of zero and width and height equal to the source image is assumed. No scaling of pixels is supported. The source object can either be an instance of Image, or Sketch.
+	 * @param {string} source_object [description]
+	 * @param {number} dest_x        [description]
+	 * @param {number} dest_y        [description]
+	 * @param {number} src_x         [description]
+	 * @param {number} src_y         [description]
+	 * @param {number} width         [description]
+	 * @param {number} height        [description]
+	 */
 	copypixels(source_object: string, dest_x: number,  dest_y: number, src_x: number, src_y: number, width: number, height: number): void;
-	flip(horizontal_flip: number, vertical_flip: number): void;
+
+	/**
+	 * Flips the image horizontally and or vertically. Arguments can be 0 or 1, where 0 is no flip, and 1 is flip.
+	 * @param {0 | 1} horizontal_flip [description]
+	 * @param {0 | 1} vertical_flip   [description]
+	 */
+	flip(horizontal_flip: 0 | 1, vertical_flip: 0 | 1): void;
+
+	/**
+	 * Frees the image data from the native c peer, which is not considered by the JavaScript garbage collector, and may consume lots of memory until the garbage collector decides to run based on JS allocated memory. Once called, the Image object is not available for any other use.
+	 */
 	freepeer(): void;
+
+	/**
+	 * Copies the pixels from the jit.matrix object specified by matrixname to the image.
+	 * @param {string} matrixname [description]
+	 */
 	fromnamedmatrix(matrixname: string): void;	
+
+	/**
+	 * Returns an array containing the pixel value at the specified location. This array is ordered RGBA, i.e. array element 0 is red, 1, green, 2, blue, 3 alpha. Color values are floating point numbers in the range 0.-1.
+	 * @param  {number}   x [description]
+	 * @param  {number}   y [description]
+	 * @return {number[]}   [description]
+	 */
 	getpixel(x: number, y: number): number[];
+
+	/**
+	 * Sets the pixel value at the specified location. Color values are floating point numbers in the range 0.-1.
+	 * @param {number} x     [description]
+	 * @param {number} y     [description]
+	 * @param {number} red   [description]
+	 * @param {number} green [description]
+	 * @param {number} blue  [description]
+	 * @param {number} alpha [description]
+	 */
 	setpixel(x: number, y: number, red: number, green: number, blue: number, alpha?: number): void;	
+
+	/**
+	 * Sets the pixel value at the specified location. Color values are floating point numbers in the range 0.-1.
+	 * @param {number}   x    [description]
+	 * @param {number}   y    [description]
+	 * @param {number[]} rgba [description]
+	 */
 	setpixel(x: number, y: number, rgba: number[]): void;	
-	setpixel(x: number, y: number, rgb: number[], a?: number): void;	
-	setpixel(position: number[], red: number, green: number, blue: number, alpha: number): void;	
+
+	/**
+	 * Sets the pixel value at the specified location. Color values are floating point numbers in the range 0.-1.
+	 * @param {number}   x   [description]
+	 * @param {number}   y   [description]
+	 * @param {number[]} rgb [description]
+	 * @param {number}   a   [description]
+	 */
+	setpixel(x: number, y: number, rgb: number[], a?: number): void;
+
+	/**
+	 * Sets the pixel value at the specified location. Color values are floating point numbers in the range 0.-1.
+	 * @param {number[]} position [description]
+	 * @param {number}   red      [description]
+	 * @param {number}   green    [description]
+	 * @param {number}   blue     [description]
+	 * @param {number}   alpha    [description]
+	 */
+	setpixel(position: number[], red: number, green: number, blue: number, alpha: number): void;
+
+	/**
+	 * Sets the pixel value at the specified location. Color values are floating point numbers in the range 0.-1.
+	 * @param {number[]} position [description]
+	 * @param {number[]} rgba     [description]
+	 */
 	setpixel(position: number[], rgba: number[]): void;	
-	setpixel(position: number[], rgb: number[], a?: number): void;	
+
+	/**
+	 * Sets the pixel value at the specified location. Color values are floating point numbers in the range 0.-1.
+	 * @param {number[]} position [description]
+	 * @param {number[]} rgb      [description]
+	 * @param {number}   a        [description]
+	 */
+	setpixel(position: number[], rgb: number[], a?: number): void;
+
+	/**
+	 * Swaps the axes of the image so that width becomes height and vice versa. The effective result is that the image is rotated 90 degrees counter clockwise, and then flipped vertically.
+	 */
 	swapxy(): void;
+
+	/**
+	 * Copy the pixels from the image to the jit.matrix object specified by matrixname.
+	 * @param {string} matrixname [description]
+	 */
 	tonamedmatrix(matrixname: string): void;
 }
 

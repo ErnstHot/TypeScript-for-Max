@@ -1465,8 +1465,17 @@ declare class Patcher {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // https://docs.cycling74.com/max7/vignettes/jspolybuffer
 
+/**
+ * The PolyBuffer object in JS is a companion to the polybuffer~ object you create in a Max patcher. It provides the ability to access a group of buffer~ objects associated with a name.
+ */
 declare class PolyBuffer {
+
+	/**
+	 * If no name is provided as an argument then instantiation will fail.
+	 * @param {string} name [description]
+	 */
 	constructor(name: string); 	
+
 	name: string; 	
 	count: number; 	
 	size: number; 	
@@ -1478,29 +1487,103 @@ declare class PolyBuffer {
 	appendempty(duration: number, channels: number): void; 	
 	clear(): void; 	
 	print(): void; 	
-	send(index: number, ...msg: any[]): void; 	
+	send(index: number, ...msg: any[]): void;
+
+	/**
+	 * Return an array containing index, name, path, duration, channel, and sample rate.
+	 * @return {string[]} [description]
+	 */
 	dump(): string[]; 	
+	
+	/**
+	 * Return an array containing names of the buffer~ objects and file names.
+	 * @param  {string}   filename [description]
+	 * @return {string[]}          [description]
+	 */
 	getshortname(filename: string): string[]; 	
+
+	/**
+	 * Return an array containing names of all the buffer~ objects.
+	 * @param {string} filename [description]
+	 */
 	getbufferlist(filename: string): void;
  }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Task                                                                                                               // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// https://docs.cycling74.com/max7/vignettes/jstaskobject
-
+/**
+ * A task is a function that can be scheduled or repeated. You can set the arguments to the function as well as the object that will be this when the function is called.
+ * https://docs.cycling74.com/max7/vignettes/jstaskobject
+ */
 declare class Task {
+
+	/**
+	 * The object argument represents the this during the execution of the function. Use the this keyword (referring to the jsthis object) to be able to use outlets and other js object features. The function argument represents the function you want to execute, and arguments (an array) represents the arguments to pass to the function. The object and arguments arguments are optional. If not present, the parent of the function object (typically jsthis) will be assumed, and there will be no arguments supplied to the function.
+	 * @param {any}   func    [description]
+	 * @param {any}   obj     [description]
+	 * @param {any[]} ...args [description]
+	 */
 	constructor(func: any, obj?: any, ...args: any[]);
+
+	/**
+	 * The arguments passed to the task function. arguments[0] is the first argument.
+	 * @type {any[]}
+	 */
 	arguments: any[];
+
+	/**
+	 * The function that is executed in the Task. You can even change this within the task function itself.
+	 * @type {any}
+	 */
 	function: any;
+
+	/**
+	 * Whether the Task is running or not. Within a function executing within a task, this will always be 1.
+	 * @type {boolean}
+	 */
 	running: boolean;
-	interval: number; 
+
+	/**
+	 * The time in milliseconds between repeats of the task function. The default interval is 500 ms.
+	 * See documentation for an example.
+	 * @type {number}
+	 */
+	interval: number;
+
+	/**
+	 * The object that is assigned to be the this in the task function. Most often this will be your jsthis object, so you can, for example access the outlet() method. You set up your jsthis object to be the this by creating a task with the keyword this as the first argument.
+	 * See documentation for an example.
+	 * @type {any}
+	 */
 	object: any;
+
+	/**
+	 * The number of times the task function has been called. Outside of a task function, the value of iterations is always 0. The value resets each time the task is started (using the repeat(), execute(), or schedule() methods.
+	 * @type {number}
+	 */
 	iterations: number;
+
+	/**
+	 * Repeat a task function. The optional number argument specifies the number of repetitions. If the argument is not present or is negative, the task repeats until it is cancelled. The optional initialdelay argument sets the delay in milliseconds until the first iteration.
+	 * See documentation for an example.
+	 * @param {number} times [description]
+	 */
 	repeat(times: number): void;
+
+	/**
+	 * Run the task once, right now. Equivalent to calling the task function with its arguments.
+	 */
 	execute(): void;
+
+	/**
+	 * Run the task once, with a delay. The optional delay argument sets the time (in milliseconds) before the task function will be executed.
+	 * @param {number} delay [description]
+	 */
 	schedule(delay?: number): void;
+
+	/**
+	 * If a task is scheduled or repeating, any future executions are cancelled. This method can be used within a task function for a self-canceling Task. 
+	 * See documentation for an example.
+	 */
 	cancel(): void;
 }
 

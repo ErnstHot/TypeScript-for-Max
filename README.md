@@ -8,6 +8,7 @@ https://cmatskas.com/getting-started-with-typescript-and-sublime-text/
 
 
 **Now with documentation!**
+
 The Max JS documention has been included as JSDoc, with the permission of Cycling '74.
 
 

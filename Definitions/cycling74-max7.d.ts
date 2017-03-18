@@ -1588,43 +1588,162 @@ declare class Task {
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Wind                                                                                                               // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// https://docs.cycling74.com/max7/vignettes/jswindobj
-
+/**
+ * The Wind object is a property of a Patcher that represents its window. You cannot create a new Wind or access other types of windows such as that of a Max table object.
+ * https://docs.cycling74.com/max7/vignettes/jswindobj
+ */
 declare class Wind {
+
+	/**
+	 * The Patcher object associated with the window.
+	 * @type {Patcher}
+	 */
 	assoc: Patcher;
+
+	/**
+	 * The Max class of the object associated with the window.
+	 * @type {string}
+	 */
 	assocclass: string;
+
+	/**
+	 * Has the window’s contents been modified? This property is read-only in the runtime version of Max.
+	 * @type {boolean}
+	 */
 	dirty: boolean;
+
+	/**
+	 * Does the window have a grow area?
+	 * @type {boolean}
+	 */
 	hasgrow: boolean;
+
+	/**
+	 * Does the window have a horizontal scroll bar?
+	 * @type {boolean}
+	 */
 	hashorizscroll: boolean;
+
+	/**
+	 * Does the window have a vertical scroll bar?
+	 * @type {boolean}
+	 */
 	hasvertscroll: boolean;
+
+	/**
+	 * Does the window have a zoom box?
+	 * @type {boolean}
+	 */
 	haszoom: boolean;
+
+	/**
+	 * Does the window have a window title bar?
+	 * @type {boolean}
+	 */
 	hastitlebar: boolean;
+
+	/**
+	 * An array of four coordinates (left, top, right, bottom) representing the window’s location in global coordinates.
+	 * @type {number[]}
+	 */
 	location: number[];
+
+	/**
+	 * The Wind object of the next patcher visible in the application’s list of windows The first Wind object can be accessed using the frontpatcher property of the Max object (as max.frontpatcher.wind).
+	 * @type {Wind}
+	 */
 	next: Wind;
+
+	/**
+	 * An array of two coordinates (width, height) representing the window’s size.
+	 * @type {number[]}
+	 */
 	size: number[];
+
+	/**
+	 * The window’s title.
+	 * @type {string}
+	 */
 	title: string;
+
+	/**
+	 * Can you see the window?
+	 * @type {boolean}
+	 */
 	visible: boolean;
+
+	/**
+	 * Move the window in front of all other windows.
+	 */
 	bringtofront(): void;
+
+	/**
+	 * Scroll the window so that x and y are at the top-left corner.
+	 * @param {number} x [description]
+	 * @param {number} y [description]
+	 */
 	scrollto(x: number, y: number): void;
+
+	/**
+	 * Moves the window behind all other windows.
+	 */
 	sendtoback(): void;
+
+	/**
+	 * Set the global location of the window according to the coordinates passed in as arguments.
+	 * @param {number} left   [description]
+	 * @param {number} top    [description]
+	 * @param {number} bottom [description]
+	 * @param {number} right  [description]
+	 */
 	setlocation(left: number, top: number, bottom: number, right: number): void;
  }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// SQLite                                                                                                             // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// https://docs.cycling74.com/max7/vignettes/jssqliteobject
-
+/**
+ * The SQLite object provides access to the SQLite database system (see http://www.sqlite.org for more information). A companion object, SQLResult, is required for most database operations.
+ * https://docs.cycling74.com/max7/vignettes/jssqliteobject
+ */
 declare class SQLite {
+
+	/**
+	 * No arguments are required for the instantiation of an SQLite object. However, all future calls to the database will be through this instance of the object.
+	 */
 	constructor();
+
+	/**
+	 * Open an SQLite-format file for database operations. The required filename argument is the file to access. The optional on_disk argument determines if the file should be memory-based (0) or disk-based (1). The optional must_exist argument, if non-zero, requires the file to exist to be opened. If zero, then a file will be created if it does not exist.
+	 * This method returns an error code if unsuccessful, or a zero if the call results in an opened database.
+	 * @param  {string} filename   [description]
+	 * @param  {number} on_disk    [description]
+	 * @param  {number} must_exist [description]
+	 * @return {number}            [description]
+	 */
 	open(filename: string, on_disk: number, must_exist: number): number;
+
+	/**
+	 * Closes a previously opened SQLite database.
+	 */
 	close(): void;
+
+	/**
+	 * Perform an SQL command on the database. This command must be in standard SQL language syntax, limited to the operations that SQLite supports. The result argument will return with an SQLResult object with any applicable results.
+	 * The method returns an error code if unsuccessful, or a zero if the call results in a completed operation.
+	 * See documentation for an example.
+	 * @param  {string} command [description]
+	 * @param  {any}    result  [description]
+	 * @return {number}         [description]
+	 */
 	exec(command: string, result: any): number;
+
+	/**
+	 * Start an SQL transaction on the database. This allows you to batch database updates, and to roll back sets of changes if they do not all complete. When you are done with batch updates, a call to endtransaction() should be executed.
+	 */
 	begintransaction(): void;
+
+	/**
+	 * Complete a transaction and flush all database writes to the file.
+	 */
 	endtransaction(): void;
 }
 
@@ -1634,10 +1753,38 @@ declare class SQLite {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // https://docs.cycling74.com/max7/vignettes/jssqlresultobject
 
+/**
+ * An SQLResult object is a container for results obtained in an SQLite.exec call. Not every exec() call will produce results, but any database query (SELECT in particular) will generate an SQLResult object even if the result is empty.
+ * https://docs.cycling74.com/max7/vignettes/jssqlresultobject
+ */
 declare class SQLResult {
 	constructor();
+
+	/**
+	 * Returns the number of records that were returned in the SQLResult object.
+	 * @return {number} [description]
+	 */
 	numrecords(): number;
+
+	/**
+	 * Returns the number of fields in the dataset returned in the SQLResult object.
+	 * @return {number} [description]
+	 */
 	numfields(): number;
+
+	/**
+	 * Returns the name of a column at the requested index.
+	 * @param  {number} index [description]
+	 * @return {string}       [description]
+	 */
 	fieldname(index: number): string;	
+
+	/**
+	 * Returns the value of the column identified by index, and in the record identified by record_no.
+	 * See documentation for an example.
+	 * @param  {number} index     [description]
+	 * @param  {number} record_no [description]
+	 * @return {any}              [description]
+	 */
 	value(index: number, record_no: number): any;				
 }

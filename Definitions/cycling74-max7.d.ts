@@ -667,156 +667,795 @@ declare class LiveAPI {
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Max                                                                                                                // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// http://max-javascript-reference.tim-schenk.de/symbols/max.html
-
+/**
+ * The Max object can be accessed as a property of a jsthis object. Any message you can send to the max object using the semicolon notation in a message box can be invoked within Javascript using Javascript syntax.
+ * http://max-javascript-reference.tim-schenk.de/symbols/max.html
+ */
 declare class Max {
-	constructor();
+	/**
+	 * The pathname of the Max application
+	 * @type {string}
+	 */
 	readonly appath: string;
+
+	/**
+	 * 1 if the command (Macintosh) or control (Windows) key is currently held down
+	 * @type {number}
+	 */
 	readonly cmdkeydown: number;
+
+	/**
+	 * 1 if the control key is currently held down
+	 * @type {number}
+	 */
 	readonly ctrlkeydown: number; 	
-	readonly db: any; // TODO: max.db? 
+
+	/**
+	 * [db description]
+	 * TODO: max.db?
+	 * @type {any}
+	 */
+	readonly db: any; 
+
+	/**
+	 * The Patcher object of the frontmost patcher window, or a nil value if no patcher window is visible.
+	 * @type {Patcher}
+	 */
 	readonly frontpatcher: Patcher;
+
+	/**
+	 * 1 if the js object is within a plug-in; note that this would be 1 if the js object was within a plug-in loaded into the vst~ object in Max.
+	 * @type {number}
+	 */
 	readonly isplugin: number;
+
+	/**
+	 * 1 if the currently executing Max application environment does not allow editing, 0 if it doe
+	 * @type {number}
+	 */
 	readonly isruntime: number;
+
+	/**
+	 * 1 if the user has disabled loadbang for the currently loading patch. If your object implements a loadbang method, it can test this property and choose to do nothing if it is true.
+	 * @type {number}
+	 */
 	readonly loadbangdisabled: number;
+
+	/**
+	 * 1 if the option (Macintosh) or alt (Windows) key is currently held down
+	 * @type {number}
+	 */
 	readonly optionkeydown: number;
+
+	/**
+	 * The name of the platform (e.g., “windows” or “macintosh”)
+	 * @type {string}
+	 */
 	readonly os: string;
+
+	/**
+	 * The current OS version number.
+	 * @type {string}
+	 */
 	readonly osversion: string;
+
+	/**
+	 * 1 if the shift key is currently held down
+	 * @type {number}
+	 */
 	readonly shiftkeydown: number;
+
+	/**
+	 * The current scheduler time in milliseconds - will be a floating-point value.
+	 * @type {number}
+	 */
 	readonly time: number;
+
+	/**
+	 * The version of the Max application, in the following form: "451"
+	 * @type {string}
+	 */
 	readonly version: string;
 
+	/**
+	 * The word buildcollective, followed by a reference name symbol and an output filename, builds a collective using the patcher associated with the symbol. The collective is named with the output filename.
+	 * @param {string} name     [description]
+	 * @param {string} filename [description]
+	 */
 	buildcollective(name: string, filename: string): void;
+
+	/**
+	 * The word checkpreempt, followed by a symbol, sends the current Overdrive mode to the receive object named by the symbol.
+	 * @param {string} receive_object [description]
+	 */
 	checkpreempt(receive_object: string): void;
+
+	/**
+	 * Causes Max not to show a Save Changes dialog when you close a window or quit, even if there are windows that have been modified. This is useful in conjunction with the quit message below.
+	 */
 	clean(): void;
+
+	/**
+	 * The word closefile, followed by a symbol, closes the patcher file previously opened with the openfile message to Max associated with the symbol.
+	 * @param {string} symbol [description]
+	 */
 	closefile(symbol: string): void;
+
+	/**
+	 * The word debug, followed by a zero or one, toggles the sending of Max's internal debugging output to the Max window. Debug information may be of limited use for anyone who isn't debugging Max itself.
+	 * @param {0 | 1} enable [description]
+	 */
 	debug(enable: 0 | 1): void;
+
+	/**
+	 * The word enablepathcache, followed by a zero or one, turns on (or off) Max's search path cache. This should only be done if you noticed unusual behavior when opening files.
+	 * @param {0 | 1} enable [description]
+	 */
 	enablepathcache(enable: 0 | 1): void;
+
+	/**
+	 * (Macintosh only) The word enablerefresh, followed by a zero or one, toggles an alternative to the standard way in which the screen contents are updated, resulting in better visual performance. This feature is enabled by default. The rate at which refresh is done can be set by using the setrefreshrate message.
+	 * @param {0 | 1} enable [description]
+	 */
 	enablerefresh(enable: 0 | 1): void;
+
+	/**
+	 * List all of the external objects currently loaded in the Max window.
+	 */
 	externs(): void;
+
+	/**
+	 * The word fileformat, followed by two symbols that specify a file extension and a four-character file type, tells Max to associate a filename extension with a particular filetype. The message max fileformat .tx TEXT associates the extension .tx with TEXT (text) files. This allows a user to send a message read george and locate a file with the name george.tx. It also ensures that files with the extension .tx will appear in a standard open file dialog where text files can be chosen.
+	 * @param {string} extension [description]
+	 * @param {string} filetype  [description]
+	 */
 	fileformat(extension: string, filetype: string): void;
+
+	/**
+	 * The word fixwidthratio, followed by a floating-point number, sets the ratio of the box to the width of the text when the user chooses Fix Width from the Object menu. The default value is 1.0. A value of 1.1 would make boxes wider than they needed to be, and a value of 0.9 would make boxes narrower than they need to be.
+	 * @param {number} ratio [description]
+	 */
 	fixwidthratio(ratio: number): void;
+
+	/**
+	 * The word getdefaultpatcherheight followed by a symbol used as the name of a receive object, causes Max to report the current default patcher height in pixels to the named receive object (See also the setdefaultpatcherheight message to Max.)
+	 * @param {string} object_name [description]
+	 */
 	getdefaultpatcherheight(object_name: string): void;
+
+	/**
+	 * The word getdefaultpatcherwidth, followed by a symbol used as the name of a receive object, causes Max to report the current default patcher width in pixels to the named receive object (See also the setdefaultpatcherwidth message to Max.)
+	 * @param {string} object_name [description]
+	 */
 	getdefaultpatcherwidth(object_name: string): void;
+
+	/**
+	 * The word getenablepathcache, followed by a symbol used as the name of a receive object, will report whether the path cache is enabled to the named receive object. (See also the enablepathcache message to Max.)
+	 * @param {string} object_name [description]
+	 */
 	getenablepathcache(object_name: string): void;
+
+	/**
+	 * (Macintosh only.) The word getenablerefresh, followed by a symbol used as the name of a receive object, will report whether enhanced refresh is enabled to the named receive object. (See also the enablerefresh message to Max.)
+	 * @param {string} object_name [description]
+	 */
 	getenablerefresh(object_name: string): void;
+
+	/**
+	 * The word geteventinterval, followed by a symbol used as the name of a receive object, will report the event interval to the named receive object. (See also the seteventinterval message to Max.)
+	 * @param {string} object_name [description]
+	 */
 	geteventinterval(object_name: string): void;
+
+	/**
+	 * The word getfixwidthratio, followed by a symbol used as the name of a receive object, reports the current fix with ratio value to the named receive object. (See also the fixwidthratio message to Max.)
+	 * @param {string} object_name [description]
+	 */
 	getfixwidthratio(object_name: string): void;
+
+	/**
+	 * The word getpollthrottle, followed by a symbol used as the name of a receive object, reports the current poll throttle value to the named receive object. (See also the setpollthrottle message to Max.)
+	 * @param {string} object_name [description]
+	 */
 	getpollthrottle(object_name: string): void;
+
+	/**
+	 * The word getqueuethrottle, followed by a symbol used as the name of a receive object, causes Max to report the current queue throttle value to the named receive object. (See also the setqueuethrottle message to Max.)
+	 * @param {string} object_name [description]
+	 */
 	getqueuethrottle(object_name: string): void;
+	
+	/**
+	 * (Macintosh only) The word getrefreshrate, followed by a symbol used as the name of a receive object, causes Max to report the current refresh rate in Hertz to the named receive object. (See also the setrefreshrate message to Max.)
+	 * @param {string} object_name [description]
+	 */
 	getrefreshrate(object_name: string): void;
+	
+	/**
+	 * The word getruntime, followed by a symbol used as the name of a receive object,sends a 1 to the named receive object if the current version of Max is a runtime version, and a 0 if not.
+	 * @param {string} object_name [description]
+	 */
 	getruntime(object_name: string): void;
+
+	/**
+	 * The word getsleep, followed by a symbol used as the name of a receive object, causes Max to report the sleep time to the named receive object. (See also the setsleep message to Max.)
+	 * @param {string} object_name [description]
+	 */
 	getsleep(object_name: string): void;
+
+	/**
+	 * The word getslop, followed by a symbol used as the name of a receive object, reports the scheduler slop value to the named receive object. (See also the setslop message to Max.)
+	 * @param {string} object_name [description]
+	 */
 	getslop(object_name: string): void;
+
+	/**
+	 * The word getqueuethrottle, followed by a symbol used as the name of a receive object, reports the maximum number of patcher UI update events processed at a time to the named receive object. (See also the setsysqelemthrottle message to Max.)
+	 * @param {string} object_name [description]
+	 */
 	getsysqelemthrottle(object_name: string): void;
+
+	/**
+	 * The word getsystem, followed by a symbol used as the name of a receive object, will report the name of the system (macintosh or windows) to the named receive object.
+	 * @param {string} object_name [description]
+	 */
 	getsystem(object_name: string): void;
+
+	/**
+	 * The word getversion, followed by a symbol used as the name of a receive object, will report the Max version number (e.g. 6.1.3 is reported as 1300) to the named receive object.
+	 * @param {string} object_name [description]
+	 */
 	getversion(object_name: string): void;
+
+	/**
+	 * Hides the cursor if it is visible.
+	 */
 	hidecursor(): void;
+
+	/**
+	 * Hides the menu bar. Although the pull-down menus are not available when the menu bar is hidden, menu shortcut (accelerator) keys continue to work.
+	 */
 	hidemenubar(): void;
+
+	/**
+	 * The word htmlref, followed by an object name as a symbol, looks for a file called .html in the search path. If found, a web browser is opened to view the page.
+	 * @param {string} object_name [description]
+	 */
 	htmlref(object_name: string): void;
+
+	/**
+	 * The word interval, followed by a number from 1 to 20, sets the timing interval of Max's internal scheduler in milliseconds. The default value is 1. This message only affects the scheduler when Overdrive is on and scheduler in audio interrupt (available with MSP) is off. (When using scheduler in audio interrupt mode the signal vector size determines the scheduler interval.) Larger scheduler intervals can improve CPU efficiency on slower computer models at the expense of timing accuracy.
+	 * @param {number} value [description]
+	 */
 	interval(value: number): void;
+
+	/**
+	 * The word launchbrowser, followed by a URL as a symbol, opens a web browser to view the URL.
+	 * @param {string} url [description]
+	 */
 	launchbrowser(url: string): void;
+
+	/**
+	 * The word maxcharheightforsubpixelantialiasing, followed by a number, sets a threshold font size (in points) for native subpixel aliasing. Since the look of subpixel antialiasing may be undesirable when working with large fonts as compared to regular antialiasing, this attribute lets you specify a threshold font size; if a font is larger than the specified size, it will be rendered using regular rather than subpixel antialiasing. 
+	 * Note that Max honors your computer's system preferences - Max won't use subpixel aliasing if you've disabled it for your system. Setting this attribute value to zero value is 0 will always use regular antialiasing, and setting a very high value will always use subpixel antialiasing (unless it is disabled in system preferences).
+	 * @param {number} points [description]
+	 */
 	maxcharheightforsubpixelantialiasing(points: number): void;
+
+	/**
+	 * When using the runtime version of Max *and* an active custom menubar object, maxinwmenu, followed by the number 1, will place an item called Status in the Windows menu, allowing users to see the Max window (labeled Status in the runtime version). When maxinwmenu is followed by 0 the menu item is not present. The default is for the Status item to be present in the Windows menu
+	 * @param {0 | 1} enable [description]
+	 */
 	maxinwmenu(enable: 0 | 1): void;
+
+	/**
+	 * Displays the Max Window. If the Max window if not currently open, the window will be displayed. If the window is currently open, it will bring it to the front.
+	 */
 	maxwindow(): void;
+
+	/**
+	 * The word midi, followed by a variable-length message, allows messages to be sent to configure the system MIDI object.
+	 * TODO: find out options
+	 * @param {any[]} ...message [description]
+	 */
 	midi(...message: any[]): void;
+
+	/**
+	 * Prints the names of all current MIDI devices in the Max window. (See also MIDI Messages to Max.)
+	 */
 	midilist(): void;
+
+	/**
+	 * The word nativetextrendering, followed by a zero or one, toggles between using JUCE font rendering (0) and the platform-native font rendering for your computer (1) when displaying text in Max.
+	 * @param {0 | 1} enable [description]
+	 */
 	nativetextrendering(enable: 0 | 1): void;
+
+	/**
+	 * (Macintosh) The word notypeinfo, followed by zero or one, sets whether Max saves files with traditional Mac OS four-character type information. By default, Max does save this information in files.
+	 * @param {0 | 1} enable [description]
+	 */
 	notypeinfo(enable: 0 | 1): void;
+
+	/**
+	 * The word objectfile, followed by two symbols that specify an object name and a file name, creates a mapping between the external object and its filename. For example, the *~ object is in a file called times~ so at startup Max executes the command max objectfile *~ times~.
+	 * @param {string} object_name [description]
+	 * @param {string} file_name   [description]
+	 */
 	objectfile(object_name: string, file_name: string): void;
+
+	/**
+	 * The word openfile, followed by two symbols that specify an reference name and a file name or path name, attempts to open the patcher with the specified name. If successful, the patcher is associated with the reference symbol, which can be passed as argument to the buildcollective, buildplugin, and closefile messages to Max. The openfile message is intended for batch collective building.
+	 * @param {string} reference_name [description]
+	 * @param {string} file_name      [description]
+	 */
 	openfile(reference_name: string, file_name: string): void;
+
+	/**
+	 * List the current search paths in the Max window. There is a button in the File Preferences window that does this.
+	 */
 	paths(): void;
+
+	/**
+	 * innum specifies an input port, outnum specifies an output port, portname is the name of the port as a single symbol (i.e. It is necessary to use double quotes). An abbrev value is 0 for no abbrev (- in menu), 1 for 'a' and 26 for 'z'.
+	 * @param {any[]} ...message [description]
+	 */
 	portabbrev(...message: any[]): void; // TODO: Documentation is unclear
+
+	/**
+	 * Enables (1) or disables (0) the port specified by portname. All ports are enabled by default.
+	 * TODO: Seems to be missing a parameter
+	 * @param {string} portname [description]
+	 */
 	portenable(portname: string) : 0 | 1;
+
+	/**
+	 * Similar to portabbrev, but offset is the channel offset added to identify input or output ports when a MIDI object can send to or receive from multiple ports by channel number. Must be a multiple of 16 (e.g. max midi portoffset innum PortA 16 sets the channel offset for PortA device to 16).
+	 * @param {any[]} ...message [description]
+	 */
 	portoffset(...message: any[]);
+
+	/**
+	 * The word preempt, followed by a one (on) or zero (off), toggles Overdrive mode.
+	 * @param {0 | 1} mode [description]
+	 */
 	preempt(mode: 0 | 1): void;
+
+	/**
+	 * The word pupdate, followed by two integer values that specify horizontal and vertical position, moves the mouse cursor to that global location.
+	 * @param {number} x [description]
+	 * @param {number} y [description]
+	 */
 	pupdate(x: number, y: number): void;
+
+	/**
+	 * Quits the Max application; equivalent to choosing Quit from the File menu. If there are unsaved changes to open files, and you haven't sent Max the clean message, Max will ask whether to save changes.
+	 */
 	quit(): void;
+
+	/**
+	 * Causes all Max windows to be updated.
+	 */
 	refresh(): void;
+
+	/**
+	 * (Macintosh only) The word setrefreshrate, followed by a number, sets the rate, in frames per second, at which the visual display is updated. On Macintosh systems, the rate at which the screen is refreshed is unrelated to the rate at which you change its contents. Better visual performance can be achieved - at the cost of a slight performance decrease in Jitter, and little or no performance decrease for audio processing - by specifying a higher frame rate. When enabled using the enablerefresh 1 message, the default rate is 28.57 FPS. Refresh enable is off by default.
+	 * @param {number} fps [description]
+	 */
 	refreshrate(fps: number);
+
+	/**
+	 * The word runtime, followed by a zero or one and a message, executes the message if the current version of Max is a runtime version (1) or non-runtime (0).
+	 * @param {0  | 1}           isRunstime [description]
+	 * @param {any[]} ...message [description]
+	 */
 	runtime(isRunstime: 0 | 1, ...message: any[]): void;
+
+	/**
+	 * The word sendapppath, followed by a symbol, sends a symbol with the path of the Max application to the receive object named by the symbol.
+	 * @param {string} object_name [description]
+	 */
 	sendapppath(object_name: string): void;
+
+	/**
+	 * The word sendinterval, followed by a symbol, sends the current scheduler interval to the receive object named by the symbol.
+	 * @param {string} object_name [description]
+	 */
 	sendinterval(object_name: string): void;
+
+	/**
+	 * The word setdefaultpatcherheight, followed by an integer value greater than 100, sets the default patcher height in pixels.
+	 * @param {number} height [description]
+	 */
 	setdefaultpatcherheight(height: number): void;
+
+	/**
+	 * The word setdefaultpatcherwidth, followed by an integer value greater than 100, sets the default patcher width in pixels.
+	 * @param {number} width [description]
+	 */
 	setdefaultpatcherwidth(width: number): void;
+
+	/**
+	 * The word seteventinterval, followed by an integer value, sets the time between invocations of the event-level timer (The default value is 2 milliseconds). The event-level timer handles low priority tasks like drawing user interface updates and playing movies.
+	 * @param {number} interval [description]
+	 */
 	seteventinterval(interval: number): void;
+
+	/**
+	 * The word setmirrortoconsole, followed by a 1 or 0, turns on or off (default is 0, off) mirroring of Max window posts to the system console. The system console is available on the Mac using Console.app, or on Windows using the DbgView program (free download from Microsoft).
+	 * @param {0 | 1} enable [description]
+	 */
 	setmirrortoconsole(enable: 0 | 1): void;
+
+	/**
+	 * The word setpollthrottle, followed by an integer, sets the maximum number of events the scheduler executes each time it is called (The default value is 20). Setting this value lower may decrease accuracy of timing at the expense of efficiency.
+	 * @param {number} event_count [description]
+	 */
 	setpollthrottle(event_count: number): void;
+
+	/**
+	 * The word setqueuethrottle, followed by an integer value, sets the maximum number of events handled at low-priority each time the low-priority queue handler is called (The default value is 2). Changing this value may affect the responsiveness of the user interface.
+	 * @param {number} event_count [description]
+	 */
 	setqueuethrottle(event_count: number): void;
+
+	/**
+	 * The word setsleep, followed by a number, sets the time between calls to get the next system event, in 60ths of a second. The default value is 2.
+	 * @param {number} interval [description]
+	 */
 	setsleep(interval: number): void;
+
+	/**
+	 * The word setslop, followed by a floating-point value, sets the scheduler slop value - the amount of time a scheduled event can be earlier than the current time before the time of the event is adjusted to match the current time. The default value is 25 milliseconds.
+	 * @param {number} slop_value [description]
+	 */
 	setslop(slop_value: number): void;
+
+	/**
+	 * The word setsysqelemthrottle, followed by a number, sets the maximum number of patcher UI update events to process at a time. Lower values can lead to more processing power available to other low-priority Max processes, and higher values make the user interface more responsive (especially when using many bpatchers).
+	 * @param {number} event_count [description]
+	 */
 	setsysqelemthrottle(event_count: number): void;
+
+	/**
+	 * Shows the cursor if it is hidden.
+	 */
 	showcursor(): void;
+
+	/**
+	 * Shows the menu bar after it has been hidden with hidemenubar.
+	 */
 	showmenubar(): void;
+
+	/**
+	 * Prints the number of symbols in the symbol table in the Max window.
+	 */
 	size(): void;
+
+	/**
+	 * The word system, followed by the name of an Operating System (windows or macintosh) and a message, will execute the message if Max is running on the named OS.
+	 * @param {"windows" |       "macintosh"} os [description]
+	 * @param {string}       message [description]
+	 */
 	system(os: "windows" | "macintosh", message: string): void;
+
+	/**
+	 * The word useslowbutcompletesearching, followed by a one (on) or zero (off), toggles complete file searching. When enabled, it causes files not found in Max's cache of the search path to be searched in the file system. This is necessary only in extremely rare cases where the file cache does not update properly. One such case is copying a file into the search path using a version of the Mac OS prior to 10.5.5 over a network. This option may cause patcher files to be loaded more slowly. The setting defaults to off with each launch of the application, and is not stored in the user's preferences. useslowbutcompletesearching 0 turns the setting off.
+	 * @param {0 | 1} enable [description]
+	 */
 	useslowbutcompletesearching(enable: 0 | 1): void;
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Maxobj                                                                                                             // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// https://docs.cycling74.com/max7/vignettes/jsmaxobj
 
+/**
+ * A Maxobj is a Javascript representation of a Max object in a patcher. It is returned by various methods of a Javascript Patcher object, such as newobject().One important thing to keep in mind about a Maxobj is that it could eventually refer to an object that no longer exists if the underlying Max object is freed. The valid property can be used to test for this condition.
+ * https://docs.cycling74.com/max7/vignettes/jsmaxobj
+ */
 declare class Maxobj {
 	constructor();
+
+	/**
+	 * The location of an object in a patcher. When the object's rectangle is changed, it will move on screen if it is visible. The coordinates are stored in the following order: left, top, right, bottom.
+	 * @type {number[]}
+	 */
 	rect: number[];
+
+	/**
+	 * The Max class (as opposed to the Javascript class, which is "Maxobj" and accessed via the standard class property) of the object.
+	 * @type {string}
+	 */
 	maxclass: string;
+
+	/**
+	 * The Patcher object that contains the Maxobj
+	 * @type {any}
+	 */
 	patcher: any;
+
+	/**
+	 * Is the object set to be hidden in a locked patcher
+	 * @type {boolean}
+	 */
 	hidden: boolean;
+
+	/**
+	 * If the object is set to use one of the standard 16 colors, this property is the index of the color
+	 * @type {number}
+	 */
 	colorindex: number;
+
+	/**
+	 * If there is another object after this one in the Patcher's list of objects, this property returns it, otherwise it returns a nil value
+	 * @type {any}
+	 */
 	nextobject: any;
+
+	/**
+	 * The patcher-specific name of the object, as set with the Name... dialog
+	 * @type {string}
+	 */
 	varname: string;
+
+	/**
+	 * Whether the object can be selected for text entry (a number box would be an example of an object whose canhilite property returns true)
+	 * @type {boolean}
+	 */
 	canhilite: boolean;
+
+	/**
+	 * Whether the object is in the Patcher's background layer
+	 * @type {boolean}
+	 */
 	background: boolean;
+
+	/**
+	 * Whether the object ignores clicks
+	 * @type {boolean}
+	 */
 	ignoreclick: boolean;
+
+	/**
+	 * Whether the object is selected in an unlocked patcher window.
+	 * @type {boolean}
+	 */
 	selected: boolean;
+
+	/**
+	 * If the Maxobj refers to an object is of Max class js, this returns the associated jsthis object
+	 * TODO: Correct return type
+	 * @type {any}
+	 */
 	js: any;
+
+	/**
+	 * Returns whether the Maxobj refers to a valid Max object
+	 * @type {boolean}
+	 */
 	valid: boolean;
+
+	/**
+	 * Sends the object the message specified by the string, followed by any additional arguments provided. This is useful for sending messages to object which dynamically dispatch messages with the “anything” message, as is the case for instances of js, jsui, lcd, and others.
+	 * @param {string} message     [description]
+	 * @param {any[]}  ...anything [description]
+	 */
 	message(message: string, ...anything: any[]): void;
+
+	/**
+	 * Opens a help file describing the object, if it exists
+	 */
 	help(): void;
+
+	/**
+	 * If the object contains a patcher, this function returns a (Javascript) Patcher object. The optional index is used for specifying an instance number, which only applies to poly~ objects. If the object does not contain a subpatcher, a nil value is returned.
+	 * @param  {number}  index [description]
+	 * @return {Patcher}       [description]
+	 */
 	subpatcher(index: number): Patcher;
+
+	/**
+	 * Returns a Boolean value if the object has an entry in its message list for the message specified by the string. If the entry is not a message that can be sent by a user within Max (i.e., it's a C-level “untyped” message), false is returned. This doesn’t work for messages which are dynamically dispatched with the “anything” message, as is the case for instances of js, jsui, lcd, and others.
+	 * @param  {string}  message [description]
+	 * @return {boolean}         [description]
+	 */
 	understands(message: string): boolean;
  }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Patcher                                                                                                            // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// https://docs.cycling74.com/max7/vignettes/jspatcherobject
-
+/**
+ * The Patcher object is a Javascript representation of a Max patcher. You can find, create, modify, and iterate through objects within a patcher, send messages to a patcher that you would use with the thispatcher object, etc.
+ * https://docs.cycling74.com/max7/vignettes/jspatcherobject
+ */
 declare class Patcher {
+	/**
+	 * Uses 100, 100, 400, 400 as default window coordinates
+	 */
 	constructor();
+	
+	/**
+	 * left, top, bottom, right: global screen coordinates of the Patcher window
+	 * @param {number} left   [description]
+	 * @param {number} top    [description]
+	 * @param {number} bottom [description]
+	 * @param {number} right  [description]
+	 */
 	constructor(left: number, top: number, bottom: number, right: number);
+
+	/**
+	 * If the patcher is a subpatcher, the box property returns the Maxobj that contains it.
+	 * @type {Maxobj}
+	 */
 	box: Maxobj;
+
+	/**
+	 * Number of objects in the patcher
+	 * @type {number}
+	 */
 	count: number;
+
+	/**
+	 * The patcher’s file path on disk
+	 * @type {string}
+	 */
 	filepath: string;
+
+	/**
+	 * If the patcher contains objects, this is the first one in its list. You can iterate through all objects in a patcher using the nextobject property of a Maxobj.
+	 * @type {Maxobj}
+	 */
 	firstobject: Maxobj;
+
+	/**
+	 * The patcher's name (its window title, without any brackets that appear for subpatchers)
+	 * @type {string}
+	 */
 	name: string;
+
+	/**
+	 * The patcher's locked state. This property is read-only in the runtime version of Max.
+	 * @type {boolean}
+	 */
 	locked: boolean;
+
+	/**
+	 * Returns "patcher"
+	 * @type {string}
+	 */
 	maxclass: string;
+
+	/**
+	 * Returns the Max class name of the parent object if this is a subpatcher, or a nil value if this is a top-level patcher.
+	 * @type {string}
+	 */
 	parentclass: string;
+
+	/**
+	 * If the patcher is a subpatcher, this returns the parent patcher. Otherwise it returns a nil value.
+	 * @type {Patcher}
+	 */
 	parentpatcher: Patcher;
+
+	/**
+	 * X/Y coordinate array for the scroll offset of a patcher is window
+	 * @type {number[]}
+	 */
 	scrolloffset: number[];
+
+	/**
+	 * X/Y coordinate array for the patcher's fixed origin
+	 * @type {number[]}
+	 */
 	scrollorigin: number[];
+
+	/**
+	 * A Javascript representation of the window associated with the patcher. For more information, see the Wind Object.
+	 * @type {Wind}
+	 */
 	wind: Wind;
+
+	/**
+	 * Creates a new object of Max class classname in a patcher using the specified parameters and returns a Maxobj (see below) that represents it.
+	 * @param  {string} classname [description]
+	 * @param  {any[]}  ...params [description]
+	 * @return {Maxobj}           [description]
+	 */
 	newobject(classname:string, ...params: any[]): Maxobj;
+
+	/**
+	 * Creates a new object of class classname in a patcher using the specified parameters and return a Maxobj (see below) that represents it.
+	 * @param  {number} left      [description]
+	 * @param  {number} top       [description]
+	 * @param  {string} classname [description]
+	 * @param  {any[]}  ...args   [description]
+	 * @return {Maxobj}           [description]
+	 */
 	newdefault(left: number, top: number, classname:string, ...args: any[]): Maxobj;
+	
 	// TODO: Are from_object: any actually strings, or Maxobjs?
+
+	/**
+	 * Connects two objects (of type Maxobj) in a patcher. Indices for the outlet and inlet arguments start at 0 for the leftmost inlet or outlet.
+	 * @param {any}    from_object [description]
+	 * @param {number} outlet      [description]
+	 * @param {any}    to_object   [description]
+	 * @param {number} inlet       [description]
+	 */
 	connect(from_object: any, outlet: number, to_object: any, inlet: number): void;
+
+	/**
+	 * Connects two objects (of type Maxobj) in a patcher with a hidden patch cord. Arguments are the same as for the connect message above.
+	 * @param {any}    from_object [description]
+	 * @param {number} outlet      [description]
+	 * @param {any}    to_object   [description]
+	 * @param {number} inlet       [description]
+	 */
 	hiddenconnect(from_object: any, outlet: number, to_object: any, inlet: number): void;
+
+	/**
+	 * Disconnects an existing connection between two objects (of type Maxobj) in a patcher. Indices for the outlet and inlet arguments start at 0 for the leftmost inlet or outlet.
+	 * @param {any}    from_object [description]
+	 * @param {number} outlet      [description]
+	 * @param {any}    to_object   [description]
+	 * @param {number} inlet       [description]
+	 */
 	disconnect(from_object: any, outlet: number, to_object: any, inlet: number): void;
+
+	/**
+	 * For all objects in a patcher, calls the function with the each object's Maxobj as an argument. Does not recurse into subpatchers.
+	 * @param {any} func [description]
+	 */
 	apply(func: any): void;
+
+	/**
+	 * For all objects in a patcher, calls the function with the each object's Maxobj as an argument.
+	 * Same as apply() except that applydeep() recurses into subpatchers (depth first).
+	 * @param {any} func [description]
+	 */
 	applydeep(func: any): void;
+
+	/**
+	 * For all objects in a patcher, run the test_function for each object's Maxobj as an argument. If the test_function returns true, the action_function is executed with the Maxobj as an argument. Does not recurse into subpatchers.
+	 * @param {any} action_function [description]
+	 * @param {any} test_function   [description]
+	 */
 	applyif(action_function: any, test_function: any): void;
+
+	/**
+	 * For all objects in a patcher, run the test_function for each object's Maxobj as an argument. If the test_function returns true, the action_function is executed with the Maxobj as an argument.
+	 * Same as applyif() except that applydeepif() recurses into subpatchers
+	 * @param {any} action_function [description]
+	 * @param {any} test_function   [description]
+	 */
 	applydeepif(action_function: any, test_function: any): void;
+
+	/**
+	 * Removes the object (a Maxobj passed as an argument) from a patcher
+	 * @param {any} obj [description]
+	 */
 	remove(obj: any): void;
+
+	/**
+	 * Returns the first object found in a patcher with the given name. The name is a local name as specified by the Name... dialog in a patcher, not the name of a send or receive object. You can also set an object's name using the varname property of a Maxobj.
+	 * @param  {string} name [description]
+	 * @return {Maxobj}      [description]
+	 */
 	getnamed(name: string): Maxobj;
+
+	/**
+	 * Calls the function on each object in a patcher, passing it as a Maxobj argument to the function. If the function returns true, the iteration stops and the Maxobj object is returned as the value of the getlogical() method. Otherwise getlogical() returns a nil value. Please note that access to patcher attributes in global code is not supported. This requires the use of loadbang().
+	 * @param {any} func [description]
+	 */
 	getlogical(func: any): void;
+
+	/**
+	 * Moves the object to the front of the current layer to which it is assigned (either background or foreground). You can change the layer by setting the background property of a Maxobj.
+	 * @param {any} obj [description]
+	 */
 	bringtofront(obj: any): void;
+
+	/**
+	 * Moves the object to the back of the current layer to which it is assigned (either background or foreground). You can change the layer by setting the background property of a Maxobj.
+	 * @param {any} obj [description]
+	 */
 	sendtoback(obj: any): void;
 }
 

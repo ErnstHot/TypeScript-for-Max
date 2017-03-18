@@ -282,11 +282,10 @@ declare class JitterMatrix extends JitterObject {
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// JitterReposUtils                                                                                                   // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// http://max-javascript-reference.tim-schenk.de/symbols/JitterReposUtils.html
-
+/**
+ * JitterReposUtils
+ * http://max-javascript-reference.tim-schenk.de/symbols/JitterReposUtils.html
+ */
 declare class JitterReposUtils {
 	static interpbits: number;
 
@@ -307,24 +306,44 @@ declare class JitterReposUtils {
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// JitterListener                                                                                                     // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// http://max-javascript-reference.tim-schenk.de/symbols/JitterListener.html
-
+/**
+ * JitterListener
+ * JitterListener objects take two arguments: the object that they “listen” to, and the function that will be called when the object triggers an event. Our JitterListener object is set to listen to our jit.window object (mywindow). The getregisteredname() property of a JitterObject object returns the name by which that object can be accessed by the JitterListener (in the case of jit.window objects, this will be the same as name of the drawing context). Whenever our jit.window object generates an event, a function called thecallback() will be triggered in our JavaScript code. Now that we’ve instantiated a JitterListener, we can (in most cases) leave it alone and simply deal with the mechanics of the callback function it triggers in response to an event from the object it listens to. 
+ * http://max-javascript-reference.tim-schenk.de/symbols/JitterListener.html
+ */
 declare class JitterListener extends JitterObject {
+	/**
+	 * JitterListener objects take two arguments: the object that they “listen” to, and the function that will be called when the object triggers an event.
+	 * @param {string} object_name [description]
+	 * @param {Object} callback    [description]
+	 */
 	constructor(object_name: string, callback: Object);
+
+	/**
+	 * The callback function to handle the event
+	 * @type {Object}
+	 */
 	function: Object;
+
+	/**
+	 * The object to listen to.
+	 * @type {JitterObject}
+	 */
 	object: JitterObject;
+
+	/**
+	 * Unknown
+	 * @type {string}
+	 */
 	subjectname: string;
 } 	
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// JitterGUIUtils                                                                                                     // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// http://max-javascript-reference.tim-schenk.de/symbols/JitterGUIUtils.html
-
+/**
+ * JitterGUIUtils
+ * classes for managing 3D UI objects.
+ * http://max-javascript-reference.tim-schenk.de/symbols/JitterGUIUtils.html 
+ */
 declare class JitterGUIUtils { 	
 	static trackers: JitterGUITracker[];
 	static add_client(dest, newclient): any;
@@ -334,11 +353,11 @@ declare class JitterGUIUtils {
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// JitterGUITracker                                                                                                   // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// http://max-javascript-reference.tim-schenk.de/symbols/JitterGUITracker.html
-
+/**
+ * JitterGUITracker
+ * Data and interface are considered private. arbitrates between subclasses of JitterGUIElement on a given render destination.
+ * http://max-javascript-reference.tim-schenk.de/symbols/JitterGUITracker.html
+ */
 declare class JitterGUITracker {
  	constructor(dest: any);
 	add_client(newclient): any;
@@ -348,23 +367,36 @@ declare class JitterGUITracker {
 } 	
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// JitterEvent                                                                                                        // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// http://max-javascript-reference.tim-schenk.de/symbols/JitterEvent.html
-
+/**
+ * JitterEvent
+ * http://max-javascript-reference.tim-schenk.de/symbols/JitterEvent.html
+ */
 declare class JitterEvent {
+	/**
+	 * depends on event type
+	 * @type {any}
+	 */
 	args: any;
+
+	/**
+	 * Name of the event to be handled
+	 * @type {string}
+	 */
 	eventname: string;
+
+	/**
+	 * The name of the object to listen to.
+	 * @type {string}
+	 */
 	subjectname: string;
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// JitterGUIElement                                                                                                   // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// http://max-javascript-reference.tim-schenk.de/symbols/JitterGUIElement.html
-
+/**
+ * JitterGUIElement
+ * Subclass this to make a UI object.
+ * http://max-javascript-reference.tim-schenk.de/symbols/JitterGUIElement.html
+ */
 declare class JitterGUIElement {
 	constructor(mobj: any);
 	delete_me: any;
@@ -376,6 +408,11 @@ declare class JitterGUIElement {
 	localint: number[];	 	
 	maxobj: Maxobj;
 	stilldown: any;
+
+	/**
+	 * set true to get events even if we are behind another object
+	 * @type {boolean}
+	 */	
 	unblockable: boolean;
 	unique_index: any;
 	val: number;
@@ -383,45 +420,226 @@ declare class JitterGUIElement {
 	worldint: number[];	
 	drawto(destination: any): void;
 	free(): any;
+
+	/**
+	 * return the intersection of the unit quad in world space with the line defined by raystart and rayend.
+	 * @param  {any} raystart [description]
+	 * @param  {any} rayend   [description]
+	 * @param  {any} p1       [description]
+	 * @return {any}          [description]
+	 */
 	get_intersect(raystart: any, rayend: any, p1: any): any;
 	handle_event(event: JitterEvent): any;
+
+	/**
+	 * set the drawing destination.
+	 * @param  {any} destination [description]
+	 * @return {any}             [description]
+	 */
 	init(destination: any): any;
+
+	/**
+	 * parse jitter-style js arguments.
+	 * @param {any[]} ...args [description]
+	 */
 	set_attr_args(...args: any[]);
+
+	/**
+	 * adding the unique_index property allows one js instance to own multiple JitterGUIElements
+	 * @param  {any} k [description]
+	 * @return {any}   [description]
+	 */
 	set_unique_index(k: any): any;
 	update(): any;
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Jitter3dUtils                                                                                                      // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// http://max-javascript-reference.tim-schenk.de/symbols/Jitter3dUtilsInterface.html
-// /jsextensions/jitter/Jitter3DUtils.js
+/**
+ * Jitter3dUtils
+ * http://max-javascript-reference.tim-schenk.de/symbols/Jitter3dUtilsInterface.html
+ * Max folder/jsextensions/jitter/Jitter3DUtils.js
+ */
 
 declare class Jitter3DUtils {
+	/**
+	 * add quats
+	 * @param {number[]} q1 [description]
+	 * @param {number[]} q2 [description]
+	 * @param {number[]} q3 [description]
+	 */
 	static add_quats(q1: number[], q2: number[], q3: number[]): void;
+
+	/**
+	 * convert angle/axis rotation to quaternion.
+	 * @param {number[]} axis [description]
+	 * @param {number[]} quat [description]
+	 */
 	static axis_to_quat(axis: number[], quat: number[]): void;
+
+	/**
+	 * build rotation matrix m for the quaternion q.
+	 * @param {number[]} m [description]
+	 * @param {number[]} q [description]
+	 */
 	static build_rotmatrix(m: number[], q: number[]): void;
+
+	/**
+	 * set p1 to the point on sphere closest to line segment.
+	 * @param {number[]} line_a [description]
+	 * @param {number[]} line_b [description]
+	 * @param {number[]} center [description]
+	 * @param {number}   r      [description]
+	 * @param {number[]} p1     [description]
+	 */
 	static closest_line_sphere(line_a: number[], line_b: number[], center: number[], r: number, p1: number[]): void;
+
+	/**
+	 * return true if the ray defined by the line's two points intersects the quad.
+	 * @param  {number[]} line_a [description]
+	 * @param  {number[]} line_b [description]
+	 * @param  {number[]} pos    [description]
+	 * @param  {number[]} rot    [description]
+	 * @param  {number[]} scale  [description]
+	 * @param  {number[]} p1     [description]
+	 * @param  {number[]} p2     [description]
+	 * @return {boolean}         [description]
+	 */
 	static intersect_line_quad(line_a: number[], line_b: number[], pos: number[], rot: number[], scale: number[],
 		p1: number[], p2: number[]): boolean;
+
+	/**
+	 * if the ray defined by the line's two points intersects the sphere, set p1 to the closest point of intersection.
+	 * @param  {number[]} line_a [description]
+	 * @param  {number[]} line_b [description]
+	 * @param  {number[]} center [description]
+	 * @param  {number}   r      [description]
+	 * @param  {number[]} p1     [description]
+	 * @return {boolean}         [description]
+	 */
 	static intersect_line_sphere(line_a: number[], line_b: number[], center: number[], r: number, p1: number[]): boolean;
+	
+	/**
+	 * [normalize_quat description]
+	 * @param {number[]} q [description]
+	 */
 	static normalize_quat(q: number[]): void;
+
+	/**
+	 * convert quaternion to angle/axis rotation.
+	 * @param {number[]} quat [description]
+	 * @param {number[]} axis [description]
+	 */
 	static quat_to_axis(quat: number[], axis: number[]): void;
+
+	/**
+	 * [transform_point description]
+	 * @param {number[]} p_in [description]
+	 * @param {number[]} m    [description]
+	 */
 	static transform_point(p_in: number[], m: number[]): void;
+
+	/**
+	 * add src1 and src2, save the result in dst
+	 * @param {number[]} src1 [description]
+	 * @param {number[]} src2 [description]
+	 * @param {number[]} dst  [description]
+	 */
 	static vadd(src1: number[], src2: number[], dst: number[]): void;
+
+	/**
+	 * copy the three indicies from v1 to v2
+	 * @param {number[]} v1 [description]
+	 * @param {number[]} v2 [description]
+	 */
 	static vcopy(v1: number[], v2: number[]): void;
+
+	/**
+	 * create the cross product of v1 and v2?
+	 * @param {number[]} v1    [description]
+	 * @param {number[]} v2    [description]
+	 * @param {number[]} cross [description]
+	 */
 	static vcross(v1: number[], v2: number[], cross: number[]): void;
+
+	/**
+	 * divide src1 and src2, save the result in dst
+	 * @param {number[]} src1 [description]
+	 * @param {number[]} src2 [description]
+	 * @param {number[]} dst  [description]
+	 */
 	static vdiv(src1: number[], src2: number[], dst: number[]): void;
+
+	/**
+	 * [vdot description]
+	 * @param  {number[]} v1 [description]
+	 * @param  {number[]} v2 [description]
+	 * @return {number}      [description]
+	 */
 	static vdot(v1: number[], v2: number[]): number;
+
+	/**
+	 * distance-squared function
+	 * @param  {number[]} v [description]
+	 * @return {number}     [description]
+	 */
 	static vlength(v: number[]): number; 	
+
+	/**
+	 * cheaper distance-squared function
+	 * @param  {number[]} v [description]
+	 * @return {number}     [description]
+	 */
 	static vlength2(v: number[]): number;
+
+	/**
+	 * multiply src1 and src2, save the result in dst
+	 * @param {number[]} src1 [description]
+	 * @param {number[]} src2 [description]
+	 * @param {number[]} dst  [description]
+	 */
 	static vmul(src1: number[], src2: number[], dst: number[]): void;
+
+	/**
+	 * [vnormal description]
+	 * @param {number[]} v [description]
+	 */
 	static vnormal(v: number[]): void;
+
+	/**
+	 * scale the vector
+	 * @param {number[]} v   [description]
+	 * @param {number}   div [description]
+	 */
 	static vscale(v: number[], div: number): void;
+
+	/**
+	 * set all three indicies of v to x, y, z
+	 * @param {number[]} v [description]
+	 * @param {number}   x [description]
+	 * @param {number}   y [description]
+	 * @param {number}   z [description]
+	 */
 	static vset(v: number[], x: number, y: number, z: number): void;
+
+	/**
+	 * subtract src1 and src2, save the result in dst
+	 * @param {number[]} src1 [description]
+	 * @param {number[]} src2 [description]
+	 * @param {number[]} dst  [description]
+	 */
 	static vsub(src1: number[], src2: number[], dst: number[]): void;
+
+	/**
+	 * set all three indicies of v to 0.0
+	 * @param {number[]} v [description]
+	 */
 	static vzero(v: number[]): void;
+
+	/**
+	 * convert rotation in Euler angles (xyz) to angle/axis rotation.
+	 * @param {number[]} xyz  [description]
+	 * @param {number[]} axis [description]
+	 */
 	static xyz_to_axis(xyz: number[], axis: number[]): void;
 }
 

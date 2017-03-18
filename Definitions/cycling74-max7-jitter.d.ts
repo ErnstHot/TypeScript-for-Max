@@ -1,3 +1,9 @@
+/*
+ * Documentation Published with permission of Cycling '74.
+ */
+
+
+
 /**
  * JitterObject
  * http://max-javascript-reference.tim-schenk.de/symbols/JitterObject.html

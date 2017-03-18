@@ -28,92 +28,418 @@ declare function outlet(outlet_number: number, ...arguments: any[]): void;
 declare function setinletassist(inlet_number: number, object: any): void;
 declare function setoutletassist(outlet_number: number, object: any): void;
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Buffer                                                                                                             // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// https://docs.cycling74.com/max7/vignettes/jsbuffer
-
+/**
+ * The Buffer object in JavaScript is a companion to the buffer~ object you instantiate in Max patchers, and provides the ability to access samples and metadata for the buffer~ object with the associated name.
+ * https://docs.cycling74.com/max7/vignettes/jsbuffer
+ */
 declare class Buffer {
+	/**
+	 * [constructor description]
+	 * @param {string} name The name is required at the time the object is created.
+	 */
 	constructor(name: string);
+
+	/**
+	 * Return the number of channels in the buffer~ object.
+	 * @type {number}
+	 */
 	channelcount: number;
+
+	/**
+	 * Return the number of frames (samples in a single channel) in the buffer~ object.
+	 * @type {number}
+	 */
 	framecount: number;
+
+	/**
+	 * Return the length of the buffer~ object in milliseconds.
+	 * @type {number}
+	 */
 	length: number; 	
+
+	/**
+	 * Return an array with count samples from channel (1-based counting) starting at frame (zero-based counting).
+	 * @param  {number}   channel 
+	 * @param  {number}   frame   
+	 * @param  {number}   count   
+	 * @return {number[]}
+	 */
 	peek(channel: number, frame: number, count: number): number[]; 	
+
+	/**
+	 * Write into the buffer~ object at channel (1-based counting) and frame (0-based counting). Samples may be a single sample value or an array of sample values. It is computationally more efficient to use an array).
+	 * @param {number}    channel
+	 * @param {number}    frame
+	 * @param {number | number[]}	samples
+	 */
 	poke(channel: number, frame: number, samples: number | number[]): void; 	
+
+	/**
+	 * Send a message to the associated buffer~ object. Can send any message that buffer~ understands.
+	 * @param {string} message_name         [description]
+	 * @param {any[]}  ...message_arguments [description]
+	 */
 	send(message_name: string, ...message_arguments: any[]): void;
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Dict                                                                                                               // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// https://docs.cycling74.com/max7/vignettes/jsdict
-
+/**
+ * The Dict object in JS is a companion to the dict object you create in a Max patcher. It provides the ability to access structured data (a dictionary) associated with a name.
+ * Example code can be found in the "js" tab of the dict help patcher.
+ * https://docs.cycling74.com/max7/vignettes/jsdict
+ */
 declare class Dict {
-	constructor(name: string); 	
-	name: string; 	
+	/**
+	 * If no name is provided as an argument then a unique name will be generated for the dictionary.
+	 * The following properties mirror the attributes of the same name from the Max dict object. See the dict reference for more details.
+	 * @param {string} name [description]
+	 */
+	constructor(name: string);
+
+	/**
+	 * Access or set the name of a dict object as a property of the dict object
+	 * @type {string}
+	 */
+	name: string;
+
+	/**
+	 * The quiet property functions the same as the @quiet attribute to dict in Max. It suppresses many errors or warnings if set to true.
+	 * @type {boolean}
+	 */
 	quiet: boolean; 	
+
+	/**
+	 * Add values to the end of an array associated with the specified key.
+	 * @param {string} key   [symbol]
+	 * @param {any[]}  value [list]
+	 */
 	append(key: string, value: any[]): void;
-	clear(): void;	
-	clone(symbol: string): void;	
-	contains(symbol: string): number;	
-	get(symbol: string): any; // TODO: Maybe...? Could be string or number?	
-	getkeys(): any[];	
+
+	/**
+	 * Erase the contents of the dictionary, restoring to a clean state
+	 */
+	clear(): void;
+
+	/**
+	 * Make a clone of the incoming dictionary.
+	 * @param {string} name [symbol]
+	 */
+	clone(name: string): void;
+
+	/**
+	 * Return a 0 or 1 indicating the specified key exists (or doesn't) in the dictionary.
+	 * @param  {string} key    [symbol]
+	 * @return {number}        [description]
+	 */
+	contains(key: string): number;
+
+	/**
+	 * Return the value associated with a key.
+	 * @param  {string} key    [symbol]
+	 * @return {any}           [description]
+	 */
+	get(key: string): any;
+	
+	/**
+	 * Return a list of all the keys in a dictionary.
+	 * @return {any[]} [description]
+	 */
+	getkeys(): any[];
+
+	/**
+	 * Return a list of all the dictionaries that currently exist.
+	 * @return {string[]} [description]
+	 */
 	getnames(): string[];	
+
+	/**
+	 * Return the number of values associated with a key.
+	 * @return {number} [description]
+	 */
 	getsize(): number;	
+
+	/**
+	 * Return the type of the values associated with a key.
+	 * @return {string} [description]
+	 */
 	gettype(): string;	
+
+	/**
+	 * Replace the content of a dictionary.
+	 * @param {string} key   [symbol]
+	 * @param {string} value [symbol]
+	 */
 	parse(key: string, value: string): void;	
+
+	/**
+	 * Pull the content of a named coll object into the dictionary.
+	 * @param {string} coll_name [symbol]
+	 */
 	pull_from_coll(coll_name: string): void;	
+
+	/**
+	 * Push the dictionary's content into a named coll object. The keys in the dictionary will become the indices in the coll, and the values for those indices the values of the dictionary's keys.
+	 * @param {string} coll_name [symbol]
+	 */
 	push_to_coll(coll_name: string): void;	
+
+	/**
+	 * Read the dictionary contents from a file.
+	 * @param {string} filename [symbol]
+	 */
 	readany(filename: string): void;	
-	remove(symbol: string): void;	
+
+	/**
+	 * Remove a key and its associated value from the dictionary.
+	 * @param {string} key [symbol]
+	 */
+	remove(key: string): void;	
+
+	/**
+	 * Set the value for a key to a specified value, creating heirarchy.
+	 * @param {string} key   [symbol]
+	 * @param {any[]}  value [list]
+	 */
 	replace(key: string, value: any[]): void;	
+
+	/**
+	 * Set the value for a key to a specified value.
+	 * @param {string} key   [symbol]
+	 * @param {any[]}  value [list]
+	 */
 	set(key: string, value: any[]): void;	
-	setparse(key: string, value: any[]): void;	
+
+	/**
+	 * Set the value for a key to dictionary content defined using JSON.
+	 * @param {string} key   [symbol]
+	 * @param {any[]}  value [list]
+	 */
+	setparse(key: string, value: any[]): void;
+
+	/**
+	 * Open a save dialog to write the dictionary contents to a file.
+	 */
 	writeagain(): void;	
+
+	/**
+	 * Return the content of the dictionary as a JSON string.
+	 * @return {string} [description]
+	 */
 	stringify(): string;	
+
+	/**
+	 * Read a file from disk in the JSON format.
+	 * @param {string} filename [symbol]
+	 */
 	import_json(filename: string): void;	
+
+	/**
+	 * Write a file to disk in the JSON format.
+	 * @param {string} filename [symbol]
+	 */
 	export_json(filename: string): void;	
+
+	/**
+	 * Read a file from disk in the YAML format.
+	 * @param {string} filename [symbol]
+	 */
 	import_yaml(filename: string): void;	
+
+	/**
+	 * Write a file to disk in the YAML format.
+	 * @param {string} filename [symbol]
+	 */
 	export_yaml(filename: string): void;
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// File                                                                                                               // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// https://docs.cycling74.com/max7/vignettes/jsfileobject
-
+/**
+ * The File object provides a means of reading and writing files from Javascript.
+ * https://docs.cycling74.com/max7/vignettes/jsfileobject
+ */
 declare class File {
+	/**
+	 * filename can be a file in the Max search path, an absolute path, or a relative path. Acceptable values for access can be "read", "write", or "readwrite". The default value for access is "read". Acceptable values for typelist are four character filetype codes listed in the file max-fileformats.txt, which is located at /Library/Application Support/Cycling ’74 on Macintosh and C:\Program Files\Common Files\Cycling ’74 on Windows. By default, typelist is empty. If able to, the File constructor opens the file specified by filename, provided it is one of the types in typelist.
+	 * @param {string} filename [description]
+	 * @param {string} access   [description]
+	 * @param {string} typelist [description]
+	 */
 	constructor(filename: string, access: string, typelist: string);
+
+	/**
+	 * File access permissions: "read", "write", or "readwrite". By default, this value is "read".
+	 * @type {string}
+	 */
 	access: string;
+	
+	/**
+	 * The assumed file byteorder (endianness): "big", "little", or "native". By default, this value is "native".
+	 * @type {string}
+	 */
 	byteorder: string;
+
+	/**
+	 * The location of the end of file, in bytes.
+	 * @type {number}
+	 */
 	eof: number;
+
+	/**
+	 * The current filename.
+	 * @type {string}
+	 */
 	filename: string;
+
+	/**
+	 * The four-character code associated. See Filetypes Recognized in Max for possible values.
+	 * (In Max 7 documentation, Filetypes link points to the wrong page. This has been reported.)
+	 * @type {string}
+	 */
 	filetype: string;
+
+	/**
+	 * The absolute path to parent folder.
+	 * @type {string}
+	 */
 	foldername: string;
+
+	/**
+	 * Return a true/false indicating if the File constructor is successful in finding and opening the file.
+	 * @type {boolean}
+	 */
 	isopen: boolean;
+
+	/**
+	 * The line break convention to use when writing lines: "dos", "mac", "unix", or "native". By default, this value is "native".
+	 * @type {string}
+	 */
 	linebreak: string;
+
+	/**
+	 * The current file position, in bytes.
+	 * @type {number}
+	 */
 	position: number;
+
+	/**
+	 * An array file type codes to filter by when opening a file. By default, this is the empty array.
+	 * @type {string[]}
+	 */
 	typelist: string[];
+
+	/**
+	 * Opens the file specified by the filename argument. If no argument is specified, it will open the last opened file.
+	 * @param {string} filename [description]
+	 */
 	open(filename?: string): void;
-	close(): void; // TODO: string [symbol] ???
+
+	/**
+	 * Closes the currently open file.
+	 */
+	close(): void; // TODO: Docs say string [symbol] ???
+
+	/**
+	 * Writes the characters contained in the string argument as characters to the file, starting at the current file position, and inserts a line break appropriate to the linebreak property. The file position is updated accordingly.
+	 * @param {string} characters [description]
+	 */
 	writeline(characters: string): void;
+
+	/**
+	 * Reads and returns a string containing up to maximum_count characters or up to the first line break as read from the file, starting at the current file position. The file position is updated accordingly.
+	 * @param  {number} maximum_count [description]
+	 * @return {string}               [description]
+	 */
 	readline(maximum_count: number): string;
+
+	/**
+	 * Writes the characters contained in the string argument as characters to the file, starting at the current file position. Unlike writeline(), no line break is inserted. The file position is updated accordingly.
+	 * @param {string} characters [description]
+	 */
 	writestring(characters: string): void;
+
+	/**
+	 * Reads and returns a string containing up to char_count characters as read from the file, starting at the current file position. Unlike readline(), line breaks are not considered. The file position is updated accordingly.
+	 * @param  {number} char_count [description]
+	 * @return {string}            [description]
+	 */
 	readstring(char_count: number): string;
+
+	/**
+	 * Writes the numbers contained in the byte_array argument as bytes to the file, starting at the current file position. The file position is updated accordingly.
+	 * @param {number[]} byte_array [description]
+	 */
 	writebytes(byte_array: number[]): void;
+
+	/**
+	 * Reads and returns an array containing up to byte_count numbers, read as bytes from the file, starting at the current file position. The file position is updated accordingly.
+	 * @param  {number}   byte_count [description]
+	 * @return {number[]}            [description]
+	 */
 	readbytes(byte_count: number): number[];
+
+	/**
+	 * Writes the single character strings contained in the char_array argument as characters to the file, starting at the current file position. The file position is updated accordingly.
+	 * @param {string[]} char_array [description]
+	 */
 	writechars(char_array: string[]): void;
+
+	/**
+	 * Reads and returns an array containing the single character strings, read as characters from the file, starting at the current file position. The file position is updated accordingly.
+	 * @param  {number}   char_count [description]
+	 * @return {string[]}            [description]
+	 */
 	readchars(char_count: number): string[];
+
+	/**
+	 * Writes the numbers contained in the int16_array argument as signed 16-bit integers to the file, starting at the current file position. The byteorder property is taken into account when writing these values. The file position is updated accordingly.
+	 * @param {number[]} int16_array [description]
+	 */
 	writeint16(int16_array: number[]): void;
+
+	/**
+	 * Reads and returns an array containing the numbers read as signed 16-bit integers from the file starting at the current file position. The byteorder property is taken into account when reading these values. The file position is updated accordingly.
+	 * @param  {number}   int16_count [description]
+	 * @return {number[]}             [description]
+	 */
 	readint16(int16_count: number): number[];
+
+	/**
+	 * Writes the numbers contained in the int32_array argument as signed 32-bit integers to the file, starting at the current file position. The byteorder property is taken into account when writing these values. The file position is updated accordingly.
+	 * @param {number[]} int32_array [description]
+	 */
 	writeint32(int32_array: number[]): void;
+
+	/**
+	 * Reads and returns an array containing the numbers read as signed 32-bit integers from the file starting at the current file position. The byteorder property is taken into account when reading these values. The file position is updated accordingly.
+	 * @param  {number}   int32_count [description]
+	 * @return {number[]}             [description]
+	 */
 	readint32(int32_count: number): number[];
+
+	/**
+	 * Writes the numbers contained in the float32_array argument as 32-bit floating point numbers to the file, starting at the current file position. The byteorder property is taken into account when writing these values. The file position is updated accordingly.
+	 * @param {number[]} int32_array [description]
+	 */
 	writefloat32(int32_array: number[]): void;
+
+	/**
+	 * Reads and returns an array containing the numbers read as 32-bit floating point numbers from the file starting at the current file position. The byteorder property is taken into account when reading these values. The file position is updated accordingly.
+	 * @param  {number}   float32_count [description]
+	 * @return {number[]}               [description]
+	 */
 	readfloat32(float32_count: number): number[];
+
+	/**
+	 * Writes the numbers contained in the float64_array argument as 64-bit floating point numbers to the file, starting at the current file position. The byteorder property is taken into account when writing these values. The file position is updated accordingly.
+	 * @param {number[]} int64_array [description]
+	 */
 	writefloat64(int64_array: number[]): void;
+
+	/**
+	 * Reads and returns an array containing the numbers read as 64-bit floating point numbers from the file starting at the current file position. The byteorder property is taken into account when reading these values. The file position is updated accordingly.
+	 * @param  {number}   float64_count [description]
+	 * @return {number[]}               [description]
+	 */
 	readfloat64(float64_count: number): number[];
 }
 

@@ -1,64 +1,283 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// JitterObject                                                                                                       // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// http://max-javascript-reference.tim-schenk.de/symbols/JitterObject.html
-
+/**
+ * JitterObject
+ * http://max-javascript-reference.tim-schenk.de/symbols/JitterObject.html
+ */
 declare class JitterObject extends Maxobj {
+	/**
+	 * Creates Jitter objects. (use JitterMatrix for jit.matrix) 
+	 * @param {string} object_name [description]
+	 * @param {any[]}  ...params   [description]
+	 */
 	constructor(object_name: string, ...params: any[]);
+
+	/**
+	 * Deletes the JitterObject
+	 */
 	freepeer(): void;
+
+	/**
+	 * [getregisteredname description]
+	 * @return {string} [description]
+	 */
 	getregisteredname(): string;
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// JitterMatrix                                                                                                       // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// http://max-javascript-reference.tim-schenk.de/symbols/JitterMatrix.html
-
+/**
+ * JitterMatrix
+ * The jit.matrix object is a named matrix which may be used for data storage and retrieval, resampling, and matrix type and planecount conversion operations.
+ * http://max-javascript-reference.tim-schenk.de/symbols/JitterMatrix.html
+ */
 declare class JitterMatrix extends JitterObject {
 	constructor(...args: any[]);  	// TODO:
 									// From JitterReposUtils.js:
 									// var s = new JitterMatrix(2, "long", x, y);
 
+	/**
+	 * Matrix adaptation flag.
+	 * @type {number}
+	 */
 	adapt: number;
-	dim: any; // TODO: Probably number[] for this and the following.
+
+	// TODO: Probably number[] for this and the following {any}.
+
+	/**
+	 * The dimensions of matrix data.
+	 * @type {any}
+	 */
+	dim: any;
+
+	/**
+	 * The byte stride per dimension.
+	 * @type {any}
+	 */
 	dimstride: any;
+
+	/**
+	 * The destination dimension end position.
+	 * @type {any}
+	 */
 	dstdimend: any;
+
+	/**
+	 * The destination dimension start position.
+	 * @type {any}
+	 */
 	dstdimstart: any;
+
+	/**
+	 * Matrix interpolation flag.
+	 * @type {number}
+	 */
 	interp: number;
+
+	/**
+	 * The name of the matrix.
+	 * @type {string}
+	 */
 	name: string;
+
+	/**
+	 * The number of planes in matrix data.
+	 * @type {number}
+	 */
 	planecount: number;
+
+	/**
+	 * Maps input places to output planes.
+	 * @type {any}
+	 */
 	planemap: any;
+
+	/**
+	 * Total byte size of matrix.
+	 * @type {number}
+	 */
 	size: number;
+
+	/**
+	 * The source dimension end position.
+	 * @type {any}
+	 */
 	srcdimend: any;
+
+	/**
+	 * The source dimension start position.
+	 * @type {any}
+	 */
 	srcdimstart: any;
+
+	/**
+	 * The matrix data type.
+	 * @type {string}
+	 */
 	type: string;
+
+	/**
+	 * Destdim use flag.
+	 * @type {number}
+	 */
 	usedstdim: number;
+
+	/**
+	 * Srcdim use flag.
+	 * @type {number}
+	 */
 	usesrcdim: number;
 
+	/**
+	 * Outputs the currently stored matrix.
+	 */
 	bang(): void;
+
+	/**
+	 * Sets all matrix values to zero.
+	 */
 	clear(): void;
+
+	/**
+	 * Export the current frame as an image file with the name specified by the first argument.
+	 * @param {string} filename  [description]
+	 * @param {string} file_type [description]
+	 * @param {0   |         1}           use_dialog [description]
+	 */
 	exportimage(filename: string, file_type: string, use_dialog: 0 | 1): void;
+
+	/**
+	 * Exports a matrix as a QuickTime movie.
+	 * @param {string} filename  [description]
+	 * @param {number} FPS       [description]
+	 * @param {string} codec     [description]
+	 * @param {string} quality   [description]
+	 * @param {number} timescale [description]
+	 */
 	exportmovie(filename: string, FPS: number, codec: string, quality: string, timescale: number): void;
+
+	/**
+	 * exprfill(plane, expression)
+	 * @param {number} plane      [description]
+	 * @param {string} expression [description]
+	 */
 	exprfill(plane: number, expression: string): void;
+
+	/**
+	 * The word fillplane, followed by an integer that specifies a plane number and a value, will fill the specified plane with the single value.
+	 * @param {number} plane [description]
+	 * @param {number} value [description]
+	 */
 	fillplane(plane: number, value: number): void;
+
+	/**
+	 * Sets all cells to the value specified by value(s) and output the data.
+	 * @param {number[]} values [description]
+	 */
 	float(values: number[]): void;
+
+	/**
+	 * Sends the value(s) in the cell specified by position out the right outlet of the object as a list in the form cell cell-position0.
+	 * @param {number[]} position [description]
+	 */
 	getcell(position: number[]): void;
+
+	/**
+	 * Imports a QuickTime movie into the matrix.
+	 * @param {string} filename    [description]
+	 * @param {number} time_offset [description]
+	 */
 	importmovie(filename: string, time_offset: number): void;
+
+	/**
+	 * Sets all cells to the value specified by value(s) and output the data.
+	 * @param {number[]} values [description]
+	 */
 	int(values: number[]): void;
+
+	/**
+	 * Copies the texture specified by texture-name to the matrix.
+	 * @param {string} texture_name [description]
+	 */
 	jit_gl_texture(texture_name: string): void;
+
+	/**
+	 * Sets all cells to the value specified by value(s) and output the data.
+	 * @param {number[]} values [description]
+	 */
 	list(values: number[]): void;
+
+	/**
+	 * The word op, followed by the name of a jit.op object operator and a set of values, is equivalent to including a jit.op object with the specified operator set as an attribute and this jit.matrix object specified as the output matrix.
+	 * @param {any[]} ...params [description]
+	 */
 	op(...params: any[]): void;
+
+	/**
+	 * Reads Jitter binary data files (.jxf) into a matrix set.
+	 * @param {string} filename [description]
+	 */
 	read(filename: string): void;
+
+	/**
+	 * Sets all cells to the value specified by value(s).
+	 * @param {number[]} values [description]
+	 */
 	setall(values: number[]): void;
+
+	/**
+	 * Sets the cell specified by position to the value specified by value.
+	 * @param {number[]}  position     [description]
+	 * @param {number}    plane        [description]
+	 * @param {number}    plane_number [description]
+	 * @param {number |            number[]}    val [description]
+	 * @param {number[]}  values       [description]
+	 */
 	setcell(position: number[], plane: number, plane_number: number, val: number | number[], values: number[]): void;
+
+	/**
+	 * The word setcell1d, followed by a number specifying an x coordinate and a list of values, is similar to the setcell message but without the need to use a "val" token to separate the coordinates from the value since the dimension count (1) is fixed.
+	 * @param {number[]} ...params [description]
+	 */
 	setcell1d(...params: number[]): void;
+
+	/**
+	 * The word setcell2d, followed by a pair of numbers specifying x and y coordinates and a list of values, is similar to the setcell message but without the need to use a "val" token to separate the coordinates from the value since the dimension count (2) is fixed.
+	 * @param {number[]} ...params [description]
+	 */
 	setcell2d(...params: number[]): void;
+
+	/**
+	 * The word setcell3d, followed by three numbers specifying x, y, and z coordinates and a list of values, is similar to the setcell message but without the need to use a "val" token to separate the coordinates from the value since the dimension count (3) is fixed.
+	 * @param {number[]} ...params [description]
+	 */
 	setcell3d(...params: number[]): void;
+	
+	/**
+	 * The word setplane1d, followed by a number specifying an x coordinate, a number specifying a plane, and a value, is similar to the setcell message but without the need to use a "val" token to separate the coordinates from the value since the dimension count (1) is fixed, or use the "plane" token to specify which plane to set.
+	 * @param {number[]} ...params [description]
+	 */
 	setplane1d(...params: number[]): void;
+
+	/**
+	 * The word setplane2d, followed by a pair of numbers specifying x and y coordinates, a number specifying a plane, and a value, is similar to the setcell message but without the need to use a "val" token to separate the coordinates from the value since the dimension count (2) is fixed, or use the "plane" token to specify which plane to set.
+	 * @param {number[]} ...params [description]
+	 */
 	setplane2d(...params: number[]): void;
+
+	/**
+	 * The word setplane3d, followed by three numbers specifying x, y, and z coordinates, a number specifying a plane, and a value, is similar to the setcell message but without the need to use a "val" token to separate the coordinates from the value since the dimension count (1) is fixed, or use the "plane" token to specify which plane to set.
+	 * @param {number[]} ...params [description]
+	 */
 	setplane3d(...params: number[]): void;
+
+	/**
+	 * Sets all cells to the value specified by value(s).
+	 * @param {number[]} ...params [description]
+	 */
 	val(...params: number[]): void;
+
+	/**
+	 * Writes matrix set as a Jitter binary data file (.jxf).
+	 * @param {string} filename [description]
+	 */
 	write(filename: string): void;
 }
 

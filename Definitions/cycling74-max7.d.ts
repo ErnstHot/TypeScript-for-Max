@@ -444,61 +444,225 @@ declare class File {
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Folder                                                                                                             // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// https://docs.cycling74.com/max7/vignettes/jsfolderobject
-
+/**
+ * The Folder object is a js “external object” defined in the Max object called jsfolder. It is used to iterate through files in a folder.
+ * https://docs.cycling74.com/max7/vignettes/jsfolderobject
+ */
 declare class Folder {
+	/**
+	 * pathname can either be the name of a folder in the search path or a complete pathname using Max path syntax.
+	 * @param {string} pathname [description]
+	 */
 	constructor(pathname: string);
+
+	/**
+	 * Non-zero (true) if there are no more files to examine in the folder, or if the pathname argument to the Folder object didn’t find a folder.
+	 * @type {boolean}
+	 */
 	end: boolean;
+
+	/**
+	 * The total number of files of the specified type(s) contained in the folder.
+	 * @type {number}
+	 */
 	count: number;
+
+	/**
+	 * The full pathname of the folder
+	 * @type {string}
+	 */
 	pathname: string;
+
+	/**
+	 * The list of file types that will be used to find files in the folder. To search for all files (the default), set the typelist property to an empty array.
+	 * @type {string[]}
+	 */
 	typelist: string[];
+
+	/**
+	 * The name of the current file.
+	 * @type {string}
+	 */
 	filename: string;
+
+	/**
+	 * An array containing the values year, month, day, hour, minute, and second with the last modified date of the current file. These values can be used to create a Javascript Date object.
+	 * @type {number[]}
+	 */
 	moddate: number[];
+
+	/**
+	 * The four-character code associated with the current file's filetype. These codes are listed in the file max-fileformats.txt, which is located at /Library/Application Support/Cycling ’74 on Macintosh and C:\Program Files\Common Files\Cycling ’74 on Windows. If there is no mapping for the file's extension, a nil value is returned.
+	 * @type {string}
+	 */
 	filetype: string;
+
+	/**
+	 * The extension of the current file's name, including the period. If there are no characters after the period, a nil value is returned.
+	 * @type {string}
+	 */
 	extension: string;
+
+	/**
+	 * [reset description]
+	 * Documentation is faulty, this has been reported.
+	 */
+	reset(): void;
+
+	/**
+	 * Start iterating at the beginning of the list of files. Re-opens the folder if it was previously closed with the close() function.
+	 */
 	append(): void;
+
+	/**
+	 * Moves to the next file.
+	 */
 	next(): void;
+
+	/**
+	 * Closes the folder. To start using it again, call the reset() function.
+	 */
 	close(): void;
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Global                                                                                                             // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// https://docs.cycling74.com/max7/vignettes/jsglobalobject
-
+/**
+ * The Global object is a fairly generic Javascript object that allows you to share data among js instances by adding and accessing properties. You can also access Global object properties from Max messages completely outside of js. Executing methods stored in Global objects from Max is not supported. However, methods are certainly among the kinds of things you can store within a Global object.
+ * A Global is basically a reference to a Javascript object that you can't access directly. The object is connected to the Max symbol with the name you supplied as an argument (this allows it to be accessed from Max). Every time you access a Global, it hands off the access to the secret hidden Javascript object. This means you can create any number of Global objects in your code, in any number of js instances, and if they all have the same name, they will all share the same data. In this way, a Global resembles a namespace.
+ * https://docs.cycling74.com/max7/vignettes/jsglobalobject
+ */
 declare class Global {
+
+	/**
+	 * name represents a String that uniquely identifies the Global.
+	 * @param {string} name [description]
+	 */
 	constructor(name: string);
+
+	/**
+	 * Sends the value of the named property property_name to the named Max receive object (or other Max object) bound to the specified receive_name symbol.
+	 * TODO: Can have any property assigned to it
+	 * @param {string} receive_name  [description]
+	 * @param {string} property_name [description]
+	 */
 	sendnamed(receive_name: string, property_name: string): void;
-	// TODO: Can have any property assigned to it
 }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// LiveAPI                                                                                                            // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// https://docs.cycling74.com/max7/vignettes/jsliveapi
-
+/**
+ * The LiveAPI object provides a means of communicating with the Live API functions from JavaScript. For background information on this functionality, please see the Live API Overview and Live Object Model documents, as well as the Reference pages for live.path, live.object and live.observer objects, which provide the same basic functionality as the LiveAPI object, but from the Max patcher.
+ * https://docs.cycling74.com/max7/vignettes/jsliveapi
+ */
 declare class LiveAPI {
+
+	/**
+	 * callback is an optional JavaScript function. This function will be called when the LiveAPI object refers to a new object in Live (if the LiveAPI object's path change, for instance), or when an observed property changes. path refers to the object in Live "pointed to" by the LiveAPI object (e.g. "live_set tracks 0 devices 0"). Alternately, a valid id can be used to refer a LiveAPI object to an object in Live.
+	 * Technical note: you cannot use the LiveAPI object in JavaScript global code. Use the live.thisdevice object to determine when your Max Device has completely loaded (the object sends a bang from its left outlet when the Device is fully initialized, including the Live API).
+	 * Legacy note: previous versions of the LiveAPI object required the jsthis object's this.patcher property as the first argument. For backward-compatibility, this first argument is still supported, but is no longer necessary.
+	 * @param {any}    callback [description]
+	 * @param {string} name     [description]
+	 */
 	constructor(callback: any, name: string);
+	
+	/**
+	 * The id of the Live object referred to by the LiveAPI object. These ids are dynamic and awarded in realtime from the Live application, so should not be stored and used over multiple runs of Max for Live.
+	 * @type {number}
+	 */
 	id: number;
+
+	/**
+	 * The path to the Live object referred to by the LiveAPI object. These paths are dependent on the currently open Set in Live, but are otherwise stable: live_set tracks 0 devices 0 will always refer to the first device of the first track of the open Live Set.
+	 * @type {string}
+	 */
 	path: string;
+
+	/**
+	 * The path to the Live object referred to by the LiveAPI object, without any quoting (the path property contains a quoted path). These paths are dependent on the currently open Set in Live, but are otherwise stable: live_set tracks 0 devices 0 will always refer to the first device of the first track of the open Live Set.
+	 * @type {string}
+	 */
 	unquotedpath: string;
+
+	/**
+	 * An array of children of the object at the current path.
+	 * @type {string[]}
+	 */
 	children: string[];
+
+	/**
+	 * The follow mode of the LiveAPI object. 0 (default) means that LiveAPI follows the object referred to by the path, even if it is moved in the Live user interface. For instance, consider a Live Set with two tracks, "Track 1" and "Track 2", left and right respectively. If your LiveAPI object's path is live_set tracks 0, the left-most track, it will refer to "Track 1". Should the position of "Track 1" change, such that it is now to the right of "Track 2", the LiveAPI object continues to refer to "Track 1". A mode of 1 means that LiveAPI updates the followed object based on its location in the Live user interface. In the above example, the LiveAPI object would always refer to the left-most track, updating its id when the object at that position in the user interface changes.
+	 * @type {number}
+	 */
 	mode: number;
+
+	/**
+	 * The type of the object at the current path. Please see the Live API Overview and Live Object Model documents for more information.
+	 * @type {string}
+	 */
 	type: string;
+
+	/**
+	 * A description of the object at the current path, including id, type, children, properties and functions.
+	 * @type {string}
+	 */
 	info: string;
+
+	/**
+	 * The observed property, child or child-list of the object at the current path, if desired. For instance, if the LiveAPI object refers to "live_set tracks 1", setting the property to "mute" would cause changes to the "mute" property of the 2nd track to be reported to the callback function defined in the LiveAPI Constructor.
+	 * @type {string}
+	 */
 	property: string;
+
+	/**
+	 * The type of the currently observed property or child. The types of the properties and children are given in the Live Object Model.
+	 * @type {string}
+	 */
 	proptype: string;
+
+	/**
+	 * The patcher of the LiveAPI object, as passed into the Constructor.
+	 * @type {any}
+	 */
 	patcher: any;
-	getcount(child: string): number;	 
+
+	/**
+	 * The count of children of the object at the current path, as specified by the child argument.
+	 * @param  {string} child [description]
+	 * @return {number}       [description]
+	 */
+	getcount(child: string): number;	
+
+	/**
+	 * Navigates to the path and causes the id of the object at that path out be sent to the callback function defined in the Constructor. If there is no object at the path, id 0 is sent.
+	 * @param {string} path [description]
+	 */
 	goto(path: string): void;
+
+	/**
+	 * Returns the value or list of values of the specified property of the current object.
+	 * @param  {string} property [description]
+	 * @return {any}             [description]
+	 */
 	get(property: string): any;
+
+	/**
+	 * Returns the value or list of values of the specified property of the current object as a String object.
+	 * @param  {string} property [description]
+	 * @return {any}             [description]
+	 */
 	getstring(property: string): any;
+
+	/**
+	 * Sets the value or list of values of the specified property of the current object.
+	 * @param {string} property [description]
+	 * @param {any}    value    [description]
+	 */
 	set(property: string, value: any): void;
+
+	/**
+	 * Calls the given function of the current object, optionally with a list of arguments.
+	 * @param {string} func [description]
+	 * @param {any}    args [description]
+	 */
 	call(func: string, args: any): void;
 }
 

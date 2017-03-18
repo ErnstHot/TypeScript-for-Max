@@ -1,7 +1,13 @@
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// Max globals                                                                                                        // 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// https://docs.cycling74.com/max7/vignettes/jsglobal
+/*
+ * Documentation Published with permission of Cycling '74.
+ */
+
+
+
+/*
+ * Max globals
+ * https://docs.cycling74.com/max7/vignettes/jsglobal 
+ */ 
 
 declare var inlets: number;
 declare var outlets: number;

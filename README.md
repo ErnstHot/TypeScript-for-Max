@@ -1,10 +1,14 @@
 ***TypeScript for Cycling '74 Max / MSP / Jitter***
 
 Compile TypeScript into JavaScript for use in Max. Examples show how to use modules and concatenate everything into a single JavaScript file.
-This has not been thoroughly tested and has plenty of TODO's in the definition files, but the grunt work of writing the definitions has been done. Expect bugs and missing definitions.
+Still has plenty of TODO's in the definition files, but the grunt work of writing the definitions has been done and it is useable. Expect minor bugs and missing definitions.
 
 Follow this guide to set up Sublime Text and TypeScript:
 https://cmatskas.com/getting-started-with-typescript-and-sublime-text/
+
+
+**Now with documentation!**
+The Max JS documention has been included as JSDoc, with the permission of Cycling '74.
 
 
 **Included in this archive**

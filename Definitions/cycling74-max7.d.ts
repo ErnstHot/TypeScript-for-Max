@@ -1,5 +1,5 @@
 /*
- * Documentation Published with permission of Cycling '74.
+ * Documentation is property of Cycling '74 and published with permission.
  */
 
 

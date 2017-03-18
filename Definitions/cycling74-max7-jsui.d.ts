@@ -1,4 +1,10 @@
 /*
+ * Documentation Published with permission of Cycling '74.
+ */
+
+
+
+/*
  * JSUI: https://docs.cycling74.com/max7/vignettes/jsuiobject
  */
 

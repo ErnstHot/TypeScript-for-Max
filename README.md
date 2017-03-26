@@ -17,6 +17,7 @@ The Max JS documentation has been included as JSDoc, with the permission of Cycl
     /Definitions
         cycling74-max7.d.ts         Definition file for JavaScript in Max
         cycling74-max7-jsui.d.ts    Definition file for JSUI, MGraphics, Sketch, etc.
+        cycling74-max7-jitter.d.ts 	Definition file for using Jitter objects 
 
     /Modules
         ExampleModule.ts            An example module used by both examples

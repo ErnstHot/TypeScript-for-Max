@@ -646,7 +646,7 @@ declare class Sketch {
 	 * @param {number} delta_y [description]
 	 * @param {number} delta_z [description]
 	 */
-	move(delta_x: number, delta_y: number, delta_z: number): void;
+	move(delta_x: number, delta_y: number, delta_z?: number): void;
 
 	/**
 	 * Moves the drawing position to the location specified by the x, y, and z arguments.
@@ -654,7 +654,7 @@ declare class Sketch {
 	 * @param {number} y [description]
 	 * @param {number} z [description]
 	 */
-	moveto(x: number, y: number, z: number): void;
+	moveto(x: number, y: number, z?: number): void;
 
 	/**
 	 * Draws a point at the location specified by the x, y, and z arguments. After this method has been called, the drawing position is updated to the location specified by the x, y, and z arguments.
@@ -662,7 +662,7 @@ declare class Sketch {
 	 * @param {number} y [description]
 	 * @param {number} z [description]
 	 */
-	point(x: number, y: number, z: number): void;
+	point(x: number, y: number, z?: number): void;
 
 	/**
 	 * Draws a line from the current drawing position to the location specified the sum of the current drawing position and the delta x, y, and z arguments. After this method has been called, the drawing position is updated to the location specified by the sum of the current drawing position and the delta x, y, and z arguments.
@@ -670,7 +670,7 @@ declare class Sketch {
 	 * @param {number} delta_y [description]
 	 * @param {number} delta_z [description]
 	 */
-	line(delta_x: number, delta_y: number, delta_z: number): void;
+	line(delta_x: number, delta_y: number, delta_z?: number): void;
 
 	/**
 	 * Draws a line from the current drawing position to the location specified by the x, y, and z arguments. After this method has been called, the drawing position is updated to the location specified by the x, y, and z arguments.
@@ -678,7 +678,7 @@ declare class Sketch {
 	 * @param {number} y [description]
 	 * @param {number} z [description]
 	 */
-	lineto(x: number, y: number, z: number): void;
+	lineto(x: number, y: number, z?: number): void;
 	
 	/**
 	 * Draws a line from the location specified by the x1, y1, and z1 arguments to the location specified by the x2, y2, and z2 arguments. After this method has been called, the drawing position is updated to the location specified by the x2, y2, and z2 arguments.
@@ -690,6 +690,7 @@ declare class Sketch {
 	 * @param {number} z2 [description]
 	 */
 	linesegment(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number): void;
+	linesegment(x1: number, y1: number, x2: number, y2: number): void;
 
 	/**
 	 * Draws a filled triangle with three corners specified by the x1, y1, z1, x2, y2, z2, x3, y3, and z3 arguments. After this method has been called, the drawing position is updated to the location specified by the x3, y3, and z3 arguments.
@@ -704,7 +705,8 @@ declare class Sketch {
 	 * @param {number} z3 [description]
 	 */
 	tri(x1: number, y1: number, z1: number, x2: number, y2: number, z2: number, x3:	number, y3: number, z3: number): void;
-	
+	tri(x1: number, y1: number, x2: number, y2: number, x3:	number, y3: number): void;
+
 	/**
 	 * Draws a framed triangle with three corners specified by the x1, y1, z1, x2, y2, z2, x3, y3, and z3 arguments. After this method has been called, the drawing position is updated to the location specified by the x3, y3, and z3 arguments.
 	 * @param {number} x1 [description]
@@ -767,7 +769,7 @@ declare class Sketch {
 	 * @param {number} scale_y [description]
 	 * @param {number} scale_z [description]
 	 */
-	cube(scale_x: number, scale_y: number, scale_z: number): void;
+	cube(scale_x: number, scale_y: number, scale_z?: number): void;
 	
 	/**
 	 * Draws a cylinder with top radius specified by the radius1 argument, bottom radius specified by the radius2 argument, length specified by the mag argument, and center point at the current drawing position. If the theta_start and theta_end arguments are specified, then a patch will be drawn instead of a full cylinder. The theta_start and theta_end arguments are in terms of degrees(0-360). The current shapeorient, shapeslice, and shapeprim values will also affect the drawing.
@@ -850,7 +852,7 @@ declare class Sketch {
 	 * @param {number} rotation_y [description]
 	 * @param {number} rotation_z [description]
 	 */
-	shapeorient(rotation_x: number, rotation_y: number, rotation_z: number): void;
+	shapeorient(rotation_x: number, rotation_y: number, rotation_z?: number): void;
 
 	/**
 	 * Sets the number of slices to use when rendering any of the "shape" drawing methods. Increasing the slice_a and slice_b arguments will increase the quality at which the shape is rendered, while decreasing these values will improve performance.
@@ -956,7 +958,7 @@ declare class Sketch {
 	 * @param  {number}   z [description]
 	 * @return {number[]}   [description]
 	 */
-	worldtoscreen(x: number, y: number, z: number): number[];
+	worldtoscreen(x: number, y: number, z?: number): number[];
 
 	/**
 	 * Begin definition of a stroked path of the style specified by the stroke_style argument. Currently supported stroke styles are "basic2d" and "line".
@@ -982,7 +984,7 @@ declare class Sketch {
 	 * @param {number} y [description]
 	 * @param {number} z [description]
 	 */
-	strokepoint(x: number, y: number, z: number): void;
+	strokepoint(x: number, y: number, z?: number): void;
 
 	/**
 	 * The default2d method is a simple way to set the graphics state to default properties useful for 2D graphics. It is called everytime your object is resized if default2d() has been called more recently than default3d().
@@ -1032,7 +1034,7 @@ declare class Sketch {
 	glmaterial(): void;
 	glmatrixmode(mode: string): void;
 	glmultmatrix(matrix_array: any[]): void;
-	glnormal(x: number, y: number, z: number): void;
+	glnormal(x: number, y: number, z?: number): void;
 	glortho(left: number, right: number, bottom: number, top: number, near: number, far: number): void;
 	glpointsize(size: number): void;
 	glpolygonmode(): void;
@@ -1042,19 +1044,20 @@ declare class Sketch {
 	glpushattrib(): void;
 	glpushmatrix(): void;
 	glrect(x1: number, y1: number, x2: number, y2: number): void;
-	glrotate(angle: number, x: number, y: number, z: number): void;
-	glscale(x_scale: number, y_scale: number, z_scale: number): void;
+	glrotate(angle: number, x: number, y: number, z?: number): void;
+	glscale(x_scale: number, y_scale: number, z_scale?: number): void;
 	glscissor(x: number, y: number, width: number, height: number): void;
 	glshademodel(mode: any[]): void;
 	gltexcoord(s: number[], t: number[]): void;
 	gltexenv(parameter_name: string, val1: string, val2: string, val3: string, val4: string): void;
 	gltexgen(coord: number[], parameter_name: string, val1: string, val2: string, val3: string, val4: string): void;
 	gltexparameter(parameter_name: string, val1: string, val2: string, val3: string, val4: string): void;
-	gltranslate(delta_x: number,  delta_y: number,  delta_z: number): void;
+	gltranslate(delta_x: number,  delta_y: number,  delta_z?: number): void;
 	glulookat(eye_x: number, eye_y: number, eye_z: number, center_x: number, center_y: number, center_z: number, up_x: number, up_y: number, up_z: number): void;
+	glulookat(eye_x: number, eye_y: number, center_x: number, center_y: number, up_x: number, up_y: number): void;
 	gluortho2d(left: number, right: number, bottom: number, top: number): void;
 	gluperspective(fovy: number, aspect: number, near: number, far: number): void;
-	glvertex(x: number, y: number, z: number): void;
+	glvertex(x: number, y: number, z?: number): void;
 	glviewport(x: number, y: number, width: number, height: number): void;
 }
 
@@ -1323,7 +1326,7 @@ declare class CanvasRenderingContext2D {
 	lineTo(x: number, y: number): void;
 	quadraticCurveTo(cpx: number, cpy: number, x: number, y: number): void;
 	bezierCurveTo(cp1x: number, cp1y: number, cp2x: number, cp2y: number, x: number, y: number): void;
-	arcTo(x1: number, y1: number, x2: number, y2: number, radius: number);
+	arcTo(x1: number, y1: number, x2: number, y2: number, radius: number): void;
 	rect(x: number, y: number, w: number, h: number): void;
 	arc(x: number, y: number, r: number, startAngle: number, endAngle: number, anticlockwise: number): void;
 	fill(): void;
@@ -1359,7 +1362,7 @@ declare class CanvasRenderingContext2D {
 
 declare class CanvasGradient {
 	constructor(patternObj: Pattern, radiHelper: any); 	// TODO: radiHelper: any ?
-	addColorStop(offset: number, color: any);			// TODO: color: any ?
+	addColorStop(offset: number, color: any): void;			// TODO: color: any ?
 }
 
 

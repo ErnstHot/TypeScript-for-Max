@@ -1,3 +1,5 @@
+import * as em from './ExampleModule'
+
 inlets = 1;
 outlets = 1;
 autowatch = 1;
@@ -7,8 +9,6 @@ m.init();
 m.relative_coords = 0;
 m.autofill = 0;
 
-// Only works if ExampleModule.ts is declared before ExampleJS.ts in tsconfig.json!
-var em = ExampleModule;
 
 var t = 0;
 var a = 10.0;
@@ -38,17 +38,21 @@ function bang() {
 	m.redraw();
 }
 
-function setA(v){
+function setA(v: number){
 	a = v;
 	m.redraw();
 }
 
-function setB(v){
+function setB(v: number){
 	b = v;
 	m.redraw();
 }
 
-function setRes(v){
+function setRes(v: number){
 	div = Math.floor(v);
 	m.redraw();
 }
+
+// .ts files with this at the end become a script usable in a [js] or [jsui] object
+let module = {};
+export = {};

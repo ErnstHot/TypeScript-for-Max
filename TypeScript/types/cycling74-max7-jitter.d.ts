@@ -352,10 +352,10 @@ declare class JitterListener extends JitterObject {
  */
 declare class JitterGUIUtils { 	
 	static trackers: JitterGUITracker[];
-	static add_client(dest, newclient): any;
-	static add_tracker(dest): any;
-	static delete_bogus_clients(dest): any;
-	static init(dest): any;
+	static add_client(dest: any, newclient: any): any;
+	static add_tracker(dest: any): any;
+	static delete_bogus_clients(dest: any): any;
+	static init(dest: any): any;
 }
 
 
@@ -366,9 +366,9 @@ declare class JitterGUIUtils {
  */
 declare class JitterGUITracker {
  	constructor(dest: any);
-	add_client(newclient): any;
+	add_client(newclient: any): any;
 	delete_bogus_clients(): any;
-	delete_duplicate_clients(newclient): any;
+	delete_duplicate_clients(newclient: any): any;
 	make_listener(): any;
 } 	
 
@@ -448,7 +448,7 @@ declare class JitterGUIElement {
 	 * parse jitter-style js arguments.
 	 * @param {any[]} ...args [description]
 	 */
-	set_attr_args(...args: any[]);
+	set_attr_args(...args: any[]): void;
 
 	/**
 	 * adding the unique_index property allows one js instance to own multiple JitterGUIElements

@@ -13,7 +13,7 @@ declare var inlets: number;
 declare var outlets: number;
 declare var autowatch: number;
 declare var jsarguments: any[];
-declare var arguments: any[];
+declare var arguments: IArguments;
 declare var box: Maxobj;
 declare var editfontsize: number;
 declare var inlet: number;
@@ -25,7 +25,7 @@ declare function error(message: any): void;
 declare function cpost(message?: any): void;
 declare function post(message?: any): void;
 declare function messnamed(object_name: string, message_name: string, message_arguments?: string): void;
-declare function arrayfromargs(message: string, arguments: any[]): void;
+declare function arrayfromargs(arguments: IArguments): any[];
 declare function assist(arguments: any): void;
 declare function declareattribute(attribute_name: string, getter_name?: string, setter_name?: string, embed?: number): void;
 declare function embedmessage(method_name: string, ...arguments: any[]): void;
@@ -1019,7 +1019,7 @@ declare class Max {
 	 * Similar to portabbrev, but offset is the channel offset added to identify input or output ports when a MIDI object can send to or receive from multiple ports by channel number. Must be a multiple of 16 (e.g. max midi portoffset innum PortA 16 sets the channel offset for PortA device to 16).
 	 * @param {any[]} ...message [description]
 	 */
-	portoffset(...message: any[]);
+	portoffset(...message: any[]): void;
 
 	/**
 	 * The word preempt, followed by a one (on) or zero (off), toggles Overdrive mode.
@@ -1048,7 +1048,7 @@ declare class Max {
 	 * (Macintosh only) The word setrefreshrate, followed by a number, sets the rate, in frames per second, at which the visual display is updated. On Macintosh systems, the rate at which the screen is refreshed is unrelated to the rate at which you change its contents. Better visual performance can be achieved - at the cost of a slight performance decrease in Jitter, and little or no performance decrease for audio processing - by specifying a higher frame rate. When enabled using the enablerefresh 1 message, the default rate is 28.57 FPS. Refresh enable is off by default.
 	 * @param {number} fps [description]
 	 */
-	refreshrate(fps: number);
+	refreshrate(fps: number): void;
 
 	/**
 	 * The word runtime, followed by a zero or one and a message, executes the message if the current version of Max is a runtime version (1) or non-runtime (0).

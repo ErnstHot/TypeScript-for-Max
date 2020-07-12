@@ -1,9 +1,8 @@
+import * as em from './ExampleModule'
+
 inlets = 1;
 outlets = 1;
 autowatch = 1;
-
-// Only works if ExampleModule.ts is declared before ExampleJS.ts in tsconfig.json!
-let em = ExampleModule;
 
 function bang() {
 	let theObject = new em.TheClass(42);
@@ -17,12 +16,16 @@ function bang() {
 	post("(<any>g).newProperty: " + (<any>g).newProperty + "\n");
 }
 
-function msg_float(v)
+function msg_float(v: number)
 {
 	outlet(0, em.square(v));
 }
 
-function msg_int(v)
+function msg_int(v: number)
 {
 	outlet(0, em.square(v));
 }
+
+// .ts files with this at the end become a script usable in a [js] or [jsui] object
+let module = {};
+export = {};

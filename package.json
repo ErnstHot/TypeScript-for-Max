@@ -1,0 +1,20 @@
+{
+  "name": "typescript-for-max",
+  "version": "1.0.0",
+  "description": "Some examples of how to use typescript and type definitions for [js]/[jsui] objects",
+  "scripts": {
+    "compile": "tsc"
+  },
+  "keywords": [
+    "maxmsp",
+    "max"
+  ],
+  "author": "Thorsten Ørts",
+  "contributors": [
+    "Tom Whiston (https://github.com/twhiston)"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/maxmsp": "^1.0.0"
+  }
+}

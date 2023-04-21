@@ -15,9 +15,11 @@ to set up Sublime Text.
 
 ## Getting started
 
-Once you have cloned this repo install it's dependencies with `npm install` you
-can then compile the `.ts` files in `src` to max compatible es3 javascript by
-running either `npm run compile` or `tsc`.
+Clone this repo to you `Max 8/Library` folder
+
+Install it's dependencies with `npm install`. You can then compile the `.ts`
+files in `src` to max compatible es3 javascript by running either
+`npm run compile` or `tsc`.
 
 Once you have done this open the patches in `maxpatches`
 
@@ -60,6 +62,9 @@ DOM declarations not having this results in duplicate declaration errors.
 
 * We configure the types so that we can use them from the top level by including
   the line `"types": ["maxmsp"],` in our `tsconfig.json`
+
+* Import things using a non local module path and max will happily resolve them `./ExampleModule`
+will not work without path rewriting `ExampleModule` will work file
 
 ## Assigning properties to objects of type Global
 

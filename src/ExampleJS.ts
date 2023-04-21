@@ -1,4 +1,4 @@
-import * as em from './ExampleModule'
+import * as em from 'ExampleModule'
 
 inlets = 1;
 outlets = 1;

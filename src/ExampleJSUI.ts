@@ -1,4 +1,4 @@
-import * as em from './ExampleModule'
+import * as em from 'ExampleModule'
 
 inlets = 1;
 outlets = 1;
@@ -29,7 +29,7 @@ function paint(){
 			m.set_source_rgba(c);
 			m.rectangle(x, y, x + div, y + div);
 			m.fill();
-		}		
+		}
 	}
 }
 

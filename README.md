@@ -1,65 +1,71 @@
-TypeScript for Cycling '74 Max / MSP / Jitter
-===
+# TypeScript for Cycling '74 Max / MSP / Jitter
 
-Compile TypeScript into JavaScript for use in Max. Examples show how to use modules and output a separate .js file for each .ts file.
+Examples showing how to use the Maxx Javascript type definitions available from NPM
+and more broadly how to compile Javascript that Max can run.
 
-Still has plenty of TODO's in the definition files, but the grunt work of writing the definitions has been done and it is useable. Expect minor bugs and missing definitions.
+`npm install @types/maxmsp --save-dev`
+
+If you want to contribute to the type definitions themselves please see [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)
 
 [VS Code](https://code.visualstudio.com/) is the recommended TypeScript IDE.
 
-Follow [this guide](https://cmatskas.com/getting-started-with-typescript-and-sublime-text/) to set up Sublime Text.
+Follow
+[this guide](https://cmatskas.com/getting-started-with-typescript-and-sublime-text/)
+to set up Sublime Text.
 
+## Getting started
 
-Now with documentation!
----
+Once you have cloned this repo install it's dependencies with `npm install` you
+can then compile the `.ts` files in `src` to max compatible es3 javascript by
+running either `npm run compile` or `tsc`.
 
-The Max JS documentation has been included as JSDoc, with the permission of Cycling '74.
+Once you have done this open the patches in `maxpatches`
 
+## API Documentation
 
-Included in this archive
----
+See
+[Max Javascript Reference](http://max-javascript-reference.tim-schenk.de/#gsc.tab=0)
+for full documentation on all functions and properties.
 
-    /TypeScript
-        tsconfig.json               TypeScript configuration file 
-        ExampleJS.ts                Example [js] code
-        ExampleJSUI.ts              Example [jsui] code
-        ExampleModule.ts            An example module used by both examples
-        /types
-            cycling74-max7.d.ts         Definition file for JavaScript in Max
-            cycling74-max7-jsui.d.ts    Definition file for JSUI, MGraphics, Sketch, etc.
-            cycling74-max7-jitter.d.ts 	Definition file for using Jitter objects 
+## Notes
 
-    /JavaScript
-        ExampleJS.js                JavaScript code generated from ExampleJS.ts
-        ExampleJSUI.js              JavaScript code generated from ExampleJSUI.ts
-        ExampleModule.js            JavaScript code generated from ExampleModule.ts
-        ExampleJS.maxpat            Example patcher 
-        ExampleJSUI.maxpat          Example patcher
+* The TypeScript configuration file (`tsconfig.json`) is set up to output a
+  separate .js file for each .ts file.
 
-
-Notes
----
-
- * The TypeScript configuration file (`tsconfig.json`) is set up to output a separate .js file for each .ts file. 
-
- * .ts files for scripts to be used in a [js] or [jsui] object must end in:
+* .ts files for scripts to be used in a [js] or [jsui] object must end in:
 
        let module = {};
        export = {};
 
-   This tricks tsc in outputting it as a separate module file, while still allowing Max to read it as a script. Do not do this in module files. 
+   This tricks tsc in outputting it as a separate module file, while still
+   allowing Max to read it as a script. Do not do this in module files.
 
- * Make sure the compiled JavaScript files are in Max' search path, set this with `"outDir"` in your `tsconfig.json`. Make sure your TypeScript folder is not in a Max project directory or Max will mess up the file structure. 
+* Make sure the compiled JavaScript files are in Max' search path, set this with
+  `"outDir"` in your `tsconfig.json`. Make sure your TypeScript folder is not in
+  a Max project directory or Max will mess up the file structure.
 
- * For continuous development run `tsc --watch` in the directory with your `tsconfig.json`. The .js files are then generated on save and Max will then reload automatically.
+* For continuous development run `tsc --watch` in the directory with your
+  `tsconfig.json`. The .js files are then generated on save and Max will then
+  reload automatically.
 
- * For more information on configuration files, look [here](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html). 
+* For more information on configuration files, look [here](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).
 
-Assigning properties to objects of type Global
----
+* Max uses an archaic es3 javascript, which means that for lots of modern
+  functionality you will need to include polyfills. In our `tsconfig.json` we
+  define this `"target": "es3",` and this means that we also need to set
+  `"ignoreDeprecations": "5.0",` because es3 support will soon be dropped by Typescript
 
-Cast to ```<any>``` to assign properties to objects of type ```Global``` like so:
-```
+* `tsconfig.json` includes `"lib": ["es6"]` to stop Typescript from trying to use
+DOM declarations not having this results in duplicate declaration errors.
+
+* We configure the types so that we can use them from the top level by including
+  the line `"types": ["maxmsp"],` in our `tsconfig.json`
+
+## Assigning properties to objects of type Global
+
+Cast to `<any>` to assign properties to objects of type `Global` like so:
+
+```Typescript
 var g = new Global("Foo");
 (<any>g).newProperty = "I am new.";
 post("(<any>g).newProperty: " + (<any>g).newProperty + "\n");

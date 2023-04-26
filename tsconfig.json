@@ -1,0 +1,22 @@
+{
+	"compileOnSave": true,
+	"compilerOptions": {
+		"module": "CommonJS",
+		"target": "es3",
+		"ignoreDeprecations": "5.0",
+		"strict": true,
+		"noImplicitAny": true,
+		"sourceMap": false,
+		"outDir": "./dist",
+		"baseUrl": "src",
+		"types": ["maxmsp"],
+		"lib": ["es6"]
+	},
+	"include": [
+		"./src/*.ts",
+		"./src/**/*.ts"
+	],
+	"exclude": [
+		"node_modules"
+	]
+}

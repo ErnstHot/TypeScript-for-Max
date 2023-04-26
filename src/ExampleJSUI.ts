@@ -1,9 +1,11 @@
-import * as em from './ExampleModule'
+import * as em from 'ExampleModule'
 
 inlets = 1;
 outlets = 1;
 autowatch = 1;
 
+// See: https://docs.cycling74.com/max8/vignettes/jsmgraphics
+// for more about how to use mgraphics
 var m = mgraphics;
 m.init();
 m.relative_coords = 0;
@@ -29,7 +31,7 @@ function paint(){
 			m.set_source_rgba(c);
 			m.rectangle(x, y, x + div, y + div);
 			m.fill();
-		}		
+		}
 	}
 }
 

@@ -1,7 +1,8 @@
 # TypeScript for Cycling '74 Max / MSP / Jitter
 
-Examples showing how to use the Maxx Javascript type definitions available from NPM
-and more broadly how to compile Javascript that Max can run.
+Examples showing how to use the Max Javascript type definitions available as part
+of the DefinitelyTyped project and more broadly how to compile Javascript that Max
+can run.
 
 `npm install @types/maxmsp --save-dev`
 
@@ -15,13 +16,33 @@ to set up Sublime Text.
 
 ## Getting started
 
-Clone this repo to you `Max 8/Library` folder
+Clone this repo to your `Max 8/Library` folder
 
 Install it's dependencies with `npm install`. You can then compile the `.ts`
 files in `src` to max compatible es3 javascript by running either
 `npm run compile` or `tsc`.
 
-Once you have done this open the patches in `maxpatches`
+Once you have done this you will see the compiled js files in the `dist` folder
+and you can open the patches in the `maxpatches` folder.
+
+## Using the definitions in your own project
+
+You can install these types in your own project by using the command
+`npm install @types/maxmsp --save-dev`
+
+You should ensure that your `tsconfig.json` is set up in a similar one
+to this project as there are a few important things that you need to note:
+
+* Max uses an archaic es3 javascript, which means that for lots of modern
+  functionality you will need to include polyfills. In our `tsconfig.json` we
+  define this `"target": "es3",` and this means that we also need to set
+  `"ignoreDeprecations": "5.0",` because es3 support will soon be dropped by Typescript
+
+* `tsconfig.json` includes `"lib": ["es6"]` to stop Typescript from trying to use
+DOM declarations not having this results in duplicate declaration errors.
+
+* We configure the types so that we can use them from the top level by including
+  the line `"types": ["maxmsp"],` in our `tsconfig.json`
 
 ## API Documentation
 
@@ -51,17 +72,6 @@ for full documentation on all functions and properties.
   reload automatically.
 
 * For more information on configuration files, look [here](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).
-
-* Max uses an archaic es3 javascript, which means that for lots of modern
-  functionality you will need to include polyfills. In our `tsconfig.json` we
-  define this `"target": "es3",` and this means that we also need to set
-  `"ignoreDeprecations": "5.0",` because es3 support will soon be dropped by Typescript
-
-* `tsconfig.json` includes `"lib": ["es6"]` to stop Typescript from trying to use
-DOM declarations not having this results in duplicate declaration errors.
-
-* We configure the types so that we can use them from the top level by including
-  the line `"types": ["maxmsp"],` in our `tsconfig.json`
 
 * Import things using a non local module path and max will happily resolve them `./ExampleModule`
 will not work without path rewriting `ExampleModule` will work file

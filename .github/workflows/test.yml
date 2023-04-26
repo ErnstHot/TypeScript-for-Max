@@ -15,9 +15,13 @@ jobs:
       - name: 'Checkout repository'
         uses: actions/checkout@v3
 
+      # Install the requirements
+      - name: 'Install'
+        run: npm install
+
       # # Runs commands using the runners shell
       # - name: 'Run tests'
-      #   run: npm install && npx nyc ava && npx nyc report --reporter cobertura --reporter json-summary
+      #   run: npx nyc ava && npx nyc report --reporter cobertura --reporter json-summary
 
       - name: 'compile'
         run: npm run compile

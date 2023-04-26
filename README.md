@@ -18,7 +18,7 @@ to set up Sublime Text.
 
 Clone this repo to your `Max 8/Library` folder
 
-Install it's dependencies with `npm install`. You can then compile the `.ts`
+Install its dependencies with `npm install`. You can then compile the `.ts`
 files in `src` to max compatible es3 javascript by running either
 `npm run compile` or `tsc`.
 
@@ -39,7 +39,8 @@ to this project as there are a few important things that you need to note:
   `"ignoreDeprecations": "5.0",` because es3 support will soon be dropped by Typescript
 
 * `tsconfig.json` includes `"lib": ["es6"]` to stop Typescript from trying to use
-DOM declarations not having this results in duplicate declaration errors.
+DOM declarations. Not including this lib directive results in duplicate declaration
+errors because some max items share names with DOM items.
 
 * We configure the types so that we can use them from the top level by including
   the line `"types": ["maxmsp"],` in our `tsconfig.json`
@@ -73,8 +74,18 @@ for full documentation on all functions and properties.
 
 * For more information on configuration files, look [here](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).
 
-* Import things using a non local module path and max will happily resolve them `./ExampleModule`
-will not work without path rewriting `ExampleModule` will work file
+* Import modules using non local paths. Max will resolve `ExampleModule` but
+`./ExampleModule` will not work without path rewriting. In more complex projects
+where you may want to hide subdirectories or use shorter paths you might need to
+include a paths directive in your `tsconfig.json`. For example:
+
+```json
+"paths": {
+      "Cursor": [
+        "Cursor/Cursor"
+      ]
+}
+```
 
 ## Assigning properties to objects of type Global
 

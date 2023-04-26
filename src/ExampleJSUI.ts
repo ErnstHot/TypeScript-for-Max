@@ -4,6 +4,8 @@ inlets = 1;
 outlets = 1;
 autowatch = 1;
 
+// See: https://docs.cycling74.com/max8/vignettes/jsmgraphics
+// for more about how to use mgraphics
 var m = mgraphics;
 m.init();
 m.relative_coords = 0;

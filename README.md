@@ -33,12 +33,14 @@ You can install these types in your own project by using the command
 You should ensure that your `tsconfig.json` is set up in a similar one
 to this project as there are a few important things that you need to note:
 
-* Max uses an archaic es3 javascript, which means that for lots of modern
-  functionality you will need to include polyfills. In our `tsconfig.json` we
-  define this `"target": "es3",` and this means that we also need to set
-  `"ignoreDeprecations": "5.0",` because es3 support will soon be dropped by Typescript
+* Max uses an archaic es5 javascript (for more information see
+  [here](https://cycling74.com/forums/any-plans-to-update-support-for-recent-versions-of-js#reply-58ed21d5c2991221d9ccad8c)),
+  which means that for lots of modern functionality you will need to include
+  polyfills. In our `tsconfig.json` we define this `"target": "es5",` and this
+  means that we also need to set `"ignoreDeprecations": "5.0",` because es3
+  support will soon be dropped by Typescript
 
-* `tsconfig.json` includes `"lib": ["es6"]` to stop Typescript from trying to use
+* `tsconfig.json` includes `"lib": ["es5"]` to stop Typescript from trying to use
 DOM declarations. Not including this lib directive results in duplicate declaration
 errors because some max items share names with DOM items.
 

@@ -15,6 +15,6 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "@types/maxmsp": "^1.0.0"
+    "@types/maxmsp": "^1.0.12"
   }
 }
